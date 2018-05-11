@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
+    //PLAYER MANAGER NEEDS TO HANDLE PLAYER SPAWNING, RESPAWN & VICTORY/GAMEOVER
+
+
     public float playerHealth = 100f;
     [HideInInspector]
     public bool isFalling = false;
