@@ -100,6 +100,7 @@ public class PlayerMovement : MonoBehaviour {
         if (angle > 350f)
         {
             isIgnition = true;
+            angle = 360f;
         }
 
         return isIgnition;
@@ -111,6 +112,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (isIgnition == true)
         {
+            //start moving player perminatly forward
             player.GetComponent<Rigidbody>().velocity = transform.forward * moveSpeed;
             transform.rotation = Quaternion.Euler(fallingRot, Mathf.Clamp(h * angleMult, -45, 45), 0f);
         }
