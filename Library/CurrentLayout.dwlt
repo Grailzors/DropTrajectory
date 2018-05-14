@@ -106,10 +106,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 1067
-  m_MinSize: {x: 711, y: 592}
-  m_MaxSize: {x: 18006, y: 18042}
+  m_MinSize: {x: 713, y: 613}
+  m_MaxSize: {x: 18008, y: 18063}
   vertical: 0
-  controlID: 132
+  controlID: 131
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -205,10 +205,10 @@ MonoBehaviour:
     y: 0
     width: 792
     height: 1067
-  m_MinSize: {x: 509, y: 592}
-  m_MaxSize: {x: 14004, y: 18042}
+  m_MinSize: {x: 511, y: 613}
+  m_MaxSize: {x: 14006, y: 18063}
   vertical: 1
-  controlID: 133
+  controlID: 132
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -229,10 +229,10 @@ MonoBehaviour:
     y: 0
     width: 792
     height: 730
-  m_MinSize: {x: 509, y: 471}
-  m_MaxSize: {x: 14004, y: 14021}
+  m_MinSize: {x: 511, y: 492}
+  m_MaxSize: {x: 14006, y: 14042}
   vertical: 0
-  controlID: 134
+  controlID: 133
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -253,10 +253,10 @@ MonoBehaviour:
     y: 0
     width: 286
     height: 730
-  m_MinSize: {x: 234, y: 471}
-  m_MaxSize: {x: 10004, y: 14021}
+  m_MinSize: {x: 234, y: 492}
+  m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 74
+  controlID: 99
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,8 +275,8 @@ MonoBehaviour:
     y: 0
     width: 286
     height: 352
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -325,8 +325,8 @@ MonoBehaviour:
     y: 0
     width: 506
     height: 730
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.06800608, y: 0.7314637, z: -0.07376857, w: -0.6744939}
     speed: 2
-    m_Value: {x: -0.06800446, y: 0.7314462, z: -0.07376681, w: -0.6744778}
+    m_Value: {x: -0.06800608, y: 0.7314636, z: -0.07376857, w: -0.6744939}
   m_Size:
     m_Target: 9.417117
     speed: 2
@@ -563,9 +563,9 @@ MonoBehaviour:
     height: 331
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5220f8ff
-    m_LastClickedID: -516014
-    m_ExpandedIDs: d803f7ffe407f8ff5220f8ff9a20f8ff9c20f8ff2a59f9ff3259f9ff7459f9ff7a59f9ffb659f9ff2493f9ffae5bfaffb45bfaff3062fbff127cfbffa0fbffff00000000302800006a280000
+    m_SelectedIDs: 6c010000
+    m_LastClickedID: 0
+    m_ExpandedIDs: a0fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -628,16 +628,15 @@ MonoBehaviour:
     m_Folders: []
   m_ViewMode: 0
   m_StartGridSize: 64
-  m_LastFolders:
-  - Assets/scenes
+  m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Projects\CarPlatformer\unity\CarPlatformer
+  m_LastProjectPath: D:\GitHub\DropTrajectory
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 82270000
     m_LastClickedID: 10114
-    m_ExpandedIDs: 000000004e27000054270000582700005a270000762700009a2700009e270000a8270000ae270000b0270000da270000e0270000fc270000
+    m_ExpandedIDs: 0000000050270000562700005a2700005c2700007a270000ac270000ba270000c0270000c2270000f2270000f8270000fe2700000028000018280000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -662,10 +661,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 353}
+    scrollPos: {x: 0, y: 337}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e27000054270000582700005a270000762700009a270000a8270000ae270000b0270000da270000e0270000fc270000ca280000cc280000
+    m_ExpandedIDs: 0000000050270000562700005a2700005c2700007a270000ac270000ba270000c0270000c2270000f2270000f8270000fe2700000028000018280000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
