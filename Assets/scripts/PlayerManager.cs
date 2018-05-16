@@ -6,10 +6,7 @@ public class PlayerManager : MonoBehaviour {
 
     //PLAYER MANAGER NEEDS TO HANDLE PLAYER SPAWNING, RESPAWN & VICTORY/GAMEOVER
 
-    //TestLine
-
-
-    public float playerHealth = 100f;
+    public int playerHealth = 100;
     [HideInInspector]
     public bool isFalling = false;
     [HideInInspector]
@@ -24,23 +21,25 @@ public class PlayerManager : MonoBehaviour {
     private void Awake()
     {
         fallingParticles = GameObject.FindGameObjectWithTag("FallingParticles").GetComponent<ParticleSystem>();
-        tireBurnParticles = GameObject.FindGameObjectsWithTag("BurnOutParticles"); 
+        tireBurnParticles = GameObject.FindGameObjectsWithTag("BurnOutParticles");
+        startLine = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>().StartLinePos();
     }
 
 
     private void Start()
     {
         fallingParticles.Stop();
-        BurnOut(tireBurnParticles, false);
+        transform.position = startLine;
+        //BurnOut(tireBurnParticles, false);
 
-        //startLine = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>().StartLinePos();      
+        //     
     }
 
 
     private void LateUpdate()
     {
         //Cycle through an array of particles and get burnout bool from playmovement script
-        BurnOut(tireBurnParticles, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementOld>().burnOut);
+        //BurnOut(tireBurnParticles, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementOld>().burnOut);
     }
 
 
@@ -75,7 +74,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (collision.gameObject.tag == "DamageWall")
         {
-            playerHealth -= 0.8f;
+            playerHealth -= 1;
         }
     }
 
@@ -106,24 +105,6 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-
-    void BurnOut(GameObject[] particleObj, bool burnOut)
-    {
-        if (burnOut == false)
-        {
-            for (int i = 0; i < particleObj.Length; i++)
-            {
-                particleObj[i].GetComponent<ParticleSystem>().Stop();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < particleObj.Length; i++)
-            {
-                particleObj[i].GetComponent<ParticleSystem>().Play();
-            }
-        }
-    }
 
     /*
     void GameOver()

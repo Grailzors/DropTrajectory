@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerMovementOld : MonoBehaviour {
 
-
-
-    //TestMaster
-
     public float finishDelay = 5f;
     public float moveSpeed = 80f;
     public float acceleration = 5f;
@@ -142,13 +138,6 @@ public class PlayerMovementOld : MonoBehaviour {
 
     void Move()
     {
-        /*
-        if (isFinished == true)
-        {
-            moveSpeed = 0f;
-        }
-        */
-
         //Ignition to start
         if (Ignition() == true)
         {
