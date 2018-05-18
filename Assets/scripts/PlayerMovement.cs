@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour {
     public float donutReturnSpeed = 0f;
     public float speedUp = 2.5f;
     public float wheelRot = 100f;
+    [HideInInspector]
+    public bool isIgnition;
 
     private GameObject player;
     private Transform donutPiv;
@@ -22,14 +24,13 @@ public class PlayerMovement : MonoBehaviour {
     private float fallingRot;
     private float buttonCounter;
     private float angle;
-    private bool isIgnition;
     private bool isFalling;
     
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        donutPiv = player.transform.GetChild(4);
+        donutPiv = player.transform.GetChild(2);
         donutSlider = GameObject.Find("DonutSlider").GetComponent<Slider>();
         backWheels = GameObject.FindGameObjectsWithTag("BackWheels");
         frontWheels = GameObject.FindGameObjectsWithTag("FrontWheels");
@@ -50,14 +51,15 @@ public class PlayerMovement : MonoBehaviour {
     {
         h = Input.GetAxis("Horizontal");
 
+        Debug.Log(isFalling);
+        Debug.Log(fallingRot);
+
         Ignition();
         WheelsControl();
-        
-
-        //Debug.Log(isFalling);
     }
 
-    private void FixedUpdate()
+
+    private void LateUpdate()
     {
         PlayerMove();
     }
@@ -98,7 +100,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            fallingRot = (0f * Time.deltaTime) * 100f;
+            fallingRot = (0 * Time.deltaTime) * 100;
         }
     }
 
@@ -137,15 +139,18 @@ public class PlayerMovement : MonoBehaviour {
 
         //Fill the UI donut up (need to replace with donut shaped UI)
         FillDonut(angle);
-        
+
+        //Debug.Log(angle);
+
         //When angle gets close to 360 set isIgnition to true and move player forward  
-        if (angle >= 359f)
+        if (angle >= 358f)
         {
             angle = 360f;
          
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isIgnition = true;
+
                 Debug.Log("GOOOOOOOOOOOOOOOO!!!!!");
             }
             
@@ -190,7 +195,4 @@ public class PlayerMovement : MonoBehaviour {
     {
         donutSlider.value = angle;
     }
-
-    
-
 }

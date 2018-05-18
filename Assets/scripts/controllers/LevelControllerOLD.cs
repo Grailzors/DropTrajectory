@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelController : MonoBehaviour {
+public class LevelControllerOLD : MonoBehaviour {
 
     public int platformNum = 12;
  
@@ -23,8 +23,8 @@ public class LevelController : MonoBehaviour {
         //Change this to be created from the resources folder
         platformPrefab = GameObject.Find("Platform1");
         finishPlatform = GameObject.Find("FinishPlatform");
-        platformZ = 730;
-        platformY = -100;
+        platformZ = 430;
+        platformY = -80;
     }
 
     // Use this for initialization
@@ -49,8 +49,8 @@ public class LevelController : MonoBehaviour {
 
             newPlatform.transform.parent = platformGroup.transform;
 
-            platformZ += 730;
-            platformY += -100;
+            platformZ += platformZ;
+            platformY += platformY;
 
             print(platformY);
             print(platformY);

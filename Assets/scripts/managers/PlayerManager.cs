@@ -6,11 +6,14 @@ public class PlayerManager : MonoBehaviour {
 
     //PLAYER MANAGER NEEDS TO HANDLE PLAYER SPAWNING, RESPAWN & VICTORY/GAMEOVER
 
+    public int playerLives = 5;
     public int playerHealth = 100;
     [HideInInspector]
     public bool isFalling = false;
     [HideInInspector]
     public bool isFinished = false;
+    [HideInInspector]
+    public bool gameOver = false;
 
     private Vector3 startLine;
     private GameObject fallingParticleObject;
@@ -22,30 +25,31 @@ public class PlayerManager : MonoBehaviour {
     {
         fallingParticles = GameObject.FindGameObjectWithTag("FallingParticles").GetComponent<ParticleSystem>();
         tireBurnParticles = GameObject.FindGameObjectsWithTag("BurnOutParticles");
-        startLine = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>().StartLinePos();
+        startLine = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelControllerOLD>().StartLinePos();
     }
 
 
     private void Start()
     {
         fallingParticles.Stop();
-        transform.position = startLine;
-        //BurnOut(tireBurnParticles, false);
-
-        //     
+        transform.position = startLine; 
     }
 
 
     private void LateUpdate()
     {
-        //Cycle through an array of particles and get burnout bool from playmovement script
-        //BurnOut(tireBurnParticles, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementOld>().burnOut);
+        BurnOut(tireBurnParticles, gameObject.GetComponent<PlayerMovement>().isIgnition);
+        GameOver();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Platform")
+        if (other.gameObject.tag == "FinishLine")
+        {
+            isFinished = true;
+        }
+        else if (other.gameObject.tag == "Platform")
         {
             fallingParticles.Stop();
             Respawn();
@@ -70,11 +74,10 @@ public class PlayerManager : MonoBehaviour {
 
     void WallCollision(Collision collision)
     {
-        Debug.Log(playerHealth);
-
         if (collision.gameObject.tag == "DamageWall")
         {
             playerHealth -= 1;
+            Debug.Log(playerHealth);
         }
     }
 
@@ -106,18 +109,34 @@ public class PlayerManager : MonoBehaviour {
     }
 
 
-    /*
+    private void BurnOut(GameObject[] particles, bool ignition)
+    {
+        foreach (GameObject particle in particles)
+        {
+            if (ignition)
+            {
+                particle.GetComponent<ParticleSystem>().Stop();
+            }
+        }
+    }
+
+    
     void GameOver()
     {
-        isFinished = true;
-
-        //Off for testing
-        //player.transform.position = finishPos;
-
-        player.transform.position = startLine.transform.position;
-
-        Debug.Log(finishPos);
+        if (isFinished == true)
+        {
+            //have this trigger the end of the level and load up the next one
+            //or maybe cutscene type thing?? 
+            transform.position = startLine;
+            Debug.Log("Winner");
+        }
+        else if (playerLives == 0)
+        {
+            //Have this go to a player death page to restart level
+            transform.position = startLine;
+            Debug.Log("GAMEOVER!!");
+        }
     }
-    */
+    
 
 }

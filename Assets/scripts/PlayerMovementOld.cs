@@ -44,9 +44,9 @@ public class PlayerMovementOld : MonoBehaviour {
     {
         GameObject levelController = GameObject.FindGameObjectWithTag("LevelController");
         
-        startLinePos = levelController.GetComponent<LevelController>().StartLinePos();
-        startLineRot = levelController.GetComponent<LevelController>().StartLineRot();
-        finishLinePos = levelController.GetComponent<LevelController>().FinishLinePos();
+        startLinePos = levelController.GetComponent<LevelControllerOLD>().StartLinePos();
+        startLineRot = levelController.GetComponent<LevelControllerOLD>().StartLineRot();
+        finishLinePos = levelController.GetComponent<LevelControllerOLD>().FinishLinePos();
 
         player.transform.position = startLinePos;
         player.transform.rotation = startLineRot;

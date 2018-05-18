@@ -15,6 +15,7 @@ TagManager:
   - DamageWall
   - BackWheels
   - FrontWheels
+  - StartLine
   layers:
   - Default
   - TransparentFX
@@ -24,11 +25,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlatformStart
+  - PlatformFinish
+  - PlatformStraight
+  - PlatformHill
+  - PlatformIntersection
   - 
   - 
   - 

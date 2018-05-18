@@ -8,6 +8,17 @@ public class GM : MonoBehaviour {
     public int pickupCounter = 0;
     public bool isFinished;
 
+    private void Start()
+    {
+        //Create the player Controller and Main Camera in the correct location on Start
+       
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = GameObject.FindGameObjectWithTag("StartPosition").transform.position;
+        
+    }
+
+
+
     /*
     private void OnTriggerEnter(Collider other)
     {
