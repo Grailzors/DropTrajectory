@@ -35,6 +35,14 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    private void LateUpdate()
+    {
+        if (isIgnition == true)
+        {
+            
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         print("Collisions HAPPENED!!!!!!");
@@ -67,13 +75,18 @@ public class PlayerMovement : MonoBehaviour {
        
         float currentPos = transform.position.y;
 
-        if (currentPos < previousPos)
+        print(currentPos);
+        print(previousPos);
+
+        if (currentPos != previousPos)
         {
             isFalling = true;
+            print("isFalling");
         }
         else
         {
             isFalling = false;
+            print("notFalling");
         }
         
         //reset the previous position with new previouse position
