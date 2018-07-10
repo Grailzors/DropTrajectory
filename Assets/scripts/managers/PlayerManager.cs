@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour {
 
     private void LateUpdate()
     {
-        BurnOut(tireBurnParticles, gameObject.GetComponent<PlayerMovement>().isIgnition);
+        //BurnOut(tireBurnParticles, gameObject.GetComponent<PlayerMovement>().isIgnition);
         GameOver();
     }
 

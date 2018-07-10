@@ -5,8 +5,10 @@ using UnityEngine;
 public class GM : MonoBehaviour {
 
     public int playerLives = 5;
-    public int pickupCounter = 0;
     public bool isFinished;
+
+    private static int score;
+
 
     private void Start()
     {
@@ -14,9 +16,10 @@ public class GM : MonoBehaviour {
        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = GameObject.FindGameObjectWithTag("StartPosition").transform.position;
-        
-    }
 
+        score = 0;
+
+    }
 
 
     /*

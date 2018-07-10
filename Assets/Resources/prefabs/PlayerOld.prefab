@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114522347058692000}
   - component: {fileID: 114059122659222068}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerOld
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,13 +695,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 80
-  fallingRotSpeed: -18
-  angleMult: 60
-  donutSpinSpeed: 0.5
-  donutReturnSpeed: 60
-  speedUp: 2.5
-  wheelRot: 150
-  isIgnition: 0
+  stearingStrength: 5
+  fallStrength: 5
+  carObject: {fileID: 0}
+  donutPivot: {fileID: 0}
+  carParts:
+    chasis: []
+    doors: []
+    rotationWheels: []
+    stationaryWheels: []
+  fallParticles: []
+  smokeParticles: []
 --- !u!114 &114522347058692000
 MonoBehaviour:
   m_ObjectHideFlags: 1

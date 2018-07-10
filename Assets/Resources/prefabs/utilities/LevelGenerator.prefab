@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4573059749677232}
   - component: {fileID: 114409236401594726}
-  - component: {fileID: 114436054618287766}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: LevelController
@@ -52,16 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25051791c30e06a4a816c3db7ec85025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformPrefabs:
+  - {fileID: 1801993171023966, guid: b23d482aa82ee4883a9a5c44bd2db2da, type: 2}
+  startPlatform: {fileID: 1754547989520128, guid: b3be849096a32438596198354daff594,
+    type: 2}
   platformNum: 35
---- !u!114 &114436054618287766
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1955979284427928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7fe0786ae9aa72459885db7db113cb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platformNum: 12
+  platformX: 300
+  platformY: -200
+  platformZ: 500

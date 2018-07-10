@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CarComponentsController : MonoBehaviour {
 
@@ -15,8 +16,7 @@ public class CarComponentsController : MonoBehaviour {
     public float carFallRotationSpeed = 0f;
     public float carRotationAngle = 0f;
     public float carRotationSpeed = 0f;
-
-    public float test;
+    public float carBankAmount = 0f;
 
     [Header("Chasis")]
     public float chasisSpeed = 0f;
@@ -30,24 +30,31 @@ public class CarComponentsController : MonoBehaviour {
     public float openAngle = 0f;
 
     [Header("Wheels")]
-    public float wheelTurnAngle = 0f;
     public float wheelSpinSpeed = 0f;
+    public float wheelTurnAngle = 0f;
+    public float wheelTurnSpeed = 0f;
 
     private float accelerateX = 0f;
     private float fallX;
+    private GameObject[] allWheels;
 
+    private void Start()
+    {
+        allWheels = carPart.rotatingWheels.Concat(carPart.staticWheels).ToArray();
+    }
 
     // Update is called once per frame
     void Update ()
     {
+        WheelsController();
         ChasisController();
         CarController();
 	}
 
     void CarController()
     {
-        carFrontPivot.transform.rotation = Quaternion.Euler(new Vector3(0f, test, 0f));
-        print(carFrontPivot.transform.rotation);
+        //Rotate the car around the carFrontPivot gameObject
+        carFrontPivot.transform.localRotation = Quaternion.Euler(new Vector3(0f, Mathf.Clamp(PlayerMovement.h * carRotationAngle, carRotationAngle * -1, carRotationAngle), 0f));
 
         if (PlayerMovement.isFalling == true)
         {
@@ -55,18 +62,16 @@ public class CarComponentsController : MonoBehaviour {
             fallX -= (Time.deltaTime * -1) * carFallRotationSpeed;
             fallX = Mathf.Clamp(fallX, 0f, carFallAngle);
 
-            carObject.transform.rotation = Quaternion.Euler(new Vector3(fallX, 0f, 0f));
+            //Rotate the car on the z axis as it falls with carBankAmount
+            carObject.transform.localRotation = Quaternion.Euler(new Vector3(fallX, 0f, (PlayerMovement.h * -1) * carBankAmount));
         }
         else
         {
-            //Falling controls
+            //stop falling rotation controls
             fallX -= 900 * Time.deltaTime;
             fallX = Mathf.Clamp(fallX, 0f, carFallAngle);
 
-            carObject.transform.rotation = Quaternion.Euler(new Vector3(fallX, 0f, 0f));
-
-            //Rotate the car around the carFrontPivot gameObject
-            //carFrontPivot.transform.rotation = carFrontPivot.transform.localRotation //Quaternion.Euler(new Vector3(0f, PlayerMovement.h * carRotationSpeed, 0f));
+            carObject.transform.localRotation = Quaternion.Euler(new Vector3(fallX, 0f, 0f));
         }
     }
 
@@ -103,8 +108,24 @@ public class CarComponentsController : MonoBehaviour {
     }
 
     void WheelsController()
-    {
+    {       
+        if (PlayerMovement.isIgnition == true)
+        {            
+            //Rotate all wheels at the same speed in the same direction
+            foreach (GameObject wheel in allWheels)
+            {
+                wheel.transform.localRotation *= Quaternion.Euler(new Vector3(Time.deltaTime * wheelSpinSpeed, 0f, 0f));
+            }
+        }
 
+        //This controls the turn angle of the turning wheels on the vehicle
+        foreach (GameObject turnWheel in carPart.rotatingWheels)
+        {
+            float turn = PlayerMovement.h * wheelTurnSpeed;
+            turn = Mathf.Clamp(turn, wheelTurnAngle * -1, wheelTurnAngle);
+
+            turnWheel.transform.localRotation = Quaternion.Euler(new Vector3(0f, turn, 0f));
+        }
     }
 }
 
