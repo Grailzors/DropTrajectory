@@ -24,6 +24,7 @@ public class CarComponentsController : MonoBehaviour {
     public float chasisXRotation = 0f;
     public float chasisZRotation = 0f;
     public float chasisTiltBack = 0f;
+    public float chasisTiltSpeed = 0f;
 
     [Header("Doors")]
     public float openThreshold = 0f;
@@ -36,12 +37,7 @@ public class CarComponentsController : MonoBehaviour {
 
     private float accelerateX = 0f;
     private float fallX;
-    private GameObject[] allWheels;
 
-    private void Start()
-    {
-        allWheels = carPart.rotatingWheels.Concat(carPart.staticWheels).ToArray();
-    }
 
     // Update is called once per frame
     void Update ()
@@ -49,7 +45,7 @@ public class CarComponentsController : MonoBehaviour {
         WheelsController();
         ChasisController();
         CarController();
-	}
+    }
 
     void CarController()
     {
@@ -89,8 +85,7 @@ public class CarComponentsController : MonoBehaviour {
 
             if (accelerateX > chasisTiltBack)
             {
-               
-                accelerateX -= Time.deltaTime * 5f;
+                accelerateX -= Time.deltaTime * chasisTiltSpeed;
             }
         }
 
@@ -108,26 +103,35 @@ public class CarComponentsController : MonoBehaviour {
     }
 
     void WheelsController()
-    {       
-        if (PlayerMovement.isIgnition == true)
-        {            
-            //Rotate all wheels at the same speed in the same direction
-            foreach (GameObject wheel in allWheels)
-            {
-                wheel.transform.localRotation *= Quaternion.Euler(new Vector3(Time.deltaTime * wheelSpinSpeed, 0f, 0f));
-            }
+    {
+        float spin = Time.deltaTime * wheelSpinSpeed;
+
+        if (PlayerMovement.isIgnition == false)
+        {
+            spin = 0f;
+        }        
+
+        /*
+         *Look into usins deligates to optimize these for loops?
+        */
+
+        //Rotate all wheels at the same speed in the same direction
+        foreach (GameObject wheel in carPart.allWheelsGeo)
+        {
+            wheel.transform.localRotation *= Quaternion.Euler(new Vector3(spin, 0f, 0f));
         }
 
-        //This controls the turn angle of the turning wheels on the vehicle
-        foreach (GameObject turnWheel in carPart.rotatingWheels)
+        //Rotate the controls to the wheels that need to turn
+        foreach (GameObject rotWheel in carPart.rotatingWheelsControls)
         {
             float turn = PlayerMovement.h * wheelTurnSpeed;
             turn = Mathf.Clamp(turn, wheelTurnAngle * -1, wheelTurnAngle);
 
-            turnWheel.transform.localRotation = Quaternion.Euler(new Vector3(0f, turn, 0f));
+            rotWheel.transform.localRotation = Quaternion.Euler(new Vector3(0f, turn, 0f));
         }
     }
 }
+
 
 [System.Serializable]
 public class CarComponents{
@@ -136,6 +140,6 @@ public class CarComponents{
     //them for procedural animation
     public GameObject[] chasis;
     public GameObject[] doors;
-    public GameObject[] rotatingWheels;
-    public GameObject[] staticWheels;
+    public GameObject[] rotatingWheelsControls;
+    public GameObject[] allWheelsGeo;
 }

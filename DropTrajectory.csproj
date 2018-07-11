@@ -223,12 +223,11 @@
     <Compile Include="Assets\scripts\controllers\CarComponentsController.cs" />
     <Compile Include="Assets\scripts\controllers\KillPlaneController.cs" />
     <Compile Include="Assets\scripts\controllers\LevelController.cs" />
-    <Compile Include="Assets\scripts\controllers\LevelControllerOLD.cs" />
     <Compile Include="Assets\scripts\controllers\PickupController.cs" />
     <Compile Include="Assets\scripts\managers\GM.cs" />
     <Compile Include="Assets\scripts\managers\PlayerManager.cs" />
+    <Compile Include="Assets\scripts\managers\UIManager.cs" />
     <Compile Include="Assets\scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\scripts\PlayerMovementOld.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TOZ\Triplanar Shaders\Readme.txt" />

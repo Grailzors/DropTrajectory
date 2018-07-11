@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     public static bool isFalling;
     public static bool isIgnition;
 
+
     private void Start()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -31,23 +32,23 @@ public class PlayerMovement : MonoBehaviour {
         if (isIgnition == true)
         {
             PlayerMove();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isIgnition == true)
+        {
             PlayerFalling();
         }
     }
 
-    private void LateUpdate()
-    {
-        if (isIgnition == true)
-        {
-            
-        }
-    }
-
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         print("Collisions HAPPENED!!!!!!");
     }
-
+    */
 
     void Ignition()
     {
@@ -64,31 +65,28 @@ public class PlayerMovement : MonoBehaviour {
         Transform playerTran = gameObject.transform;
         float z = moveSpeed * Time.deltaTime;
         float falling = (fallStrength * Time.deltaTime) * -1;
-        
-        playerTran.position += new Vector3((h * horizontalSpeed), falling, z); 
+
+        playerTran.position += new Vector3((h * horizontalSpeed), falling, z);
     }
 
     void PlayerFalling()
     {
-        //Get the y position of the player and normalize it to see if it is falling on a negative scale
-        //when moving on the y axis
-       
+        //Get the y position of the player and normalize it to see if it is falling 
+        //on a negative scale when moving on the y axis
+
         float currentPos = transform.position.y;
 
-        print(currentPos);
-        print(previousPos);
-
-        if (currentPos != previousPos)
+        if (currentPos < previousPos)
         {
             isFalling = true;
-            print("isFalling");
+            //print("isFalling");
         }
         else
         {
             isFalling = false;
-            print("notFalling");
+            //print("notFalling");
         }
-        
+
         //reset the previous position with new previouse position
         previousPos = currentPos;
     }

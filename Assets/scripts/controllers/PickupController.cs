@@ -2,30 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupController : MonoBehaviour {
-
-    public float speed = 2f;
-    public float duration = 5f;
-    public float pulseSpeed = 10f;
-
-    private Light halo;
-    private Color color0;
-    private Color color1;
-
-    private void Start()
-    {
-        halo = GameObject.Find("HaloLight").GetComponent<Light>();
-    }
-
-    private void Update()
-    {
-        float y = (1 * Time.deltaTime) * speed;
-
-        transform.rotation = transform.rotation * Quaternion.Euler(0f, y, 0f);
-    }
-
+public class PickupController : MonoBehaviour
+{
     private void OnTriggerEnter(Collider other)
     {
-            
+        //Go through and tell all child objects of the pick up to ignore the plow collider
+        if (other.gameObject.tag == "Player")
+        {
+            print("Hit Player");
+
+            GameObject player = other.gameObject;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject child = transform.GetChild(i).gameObject;
+                print(child);
+
+                if (other.gameObject.name != "Player")
+                {
+                    Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), child.GetComponent<Collider>());
+                }
+                    
+            }
+        }
     }
 }

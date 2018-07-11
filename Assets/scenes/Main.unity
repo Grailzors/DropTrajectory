@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -283,7 +283,7 @@ Prefab:
     - target: {fileID: 224789924224486500, guid: bab2197f43c7fc64b814e43fc943c093,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bab2197f43c7fc64b814e43fc943c093, type: 2}
@@ -387,8 +387,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 10000000
+  near clip plane: 1
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -567,7 +567,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9786fbaff15698f46b123762d941bf18, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1929193554
+--- !u!1001 &1545656697
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -655,7 +655,7 @@ Prefab:
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}
       propertyPath: platformZ
-      value: 750
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}

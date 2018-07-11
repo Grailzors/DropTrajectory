@@ -4,139 +4,66 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    //PLAYER MANAGER NEEDS TO HANDLE PLAYER SPAWNING, RESPAWN & VICTORY/GAMEOVER
+    //PLAYER MANAGER NEEDS TO HANDLE PLAYER RESPAWN
+    [Header("Player Components")]
+    public GameObject player;
 
-    public int playerLives = 5;
-    public int playerHealth = 100;
-    [HideInInspector]
-    public bool isFalling = false;
-    [HideInInspector]
-    public bool isFinished = false;
-    [HideInInspector]
-    public bool gameOver = false;
+    [Header("Player Variables")]
+    public int playerLives;
+    public float fallTimeOut = 0f;
 
-    private Vector3 startLine;
-    private GameObject fallingParticleObject;
-    private ParticleSystem fallingParticles;
-    private GameObject[] tireBurnParticles;
-    
+    public static float screenFadeValue;
+    public static float resetCounter;
+    public static float fallTimer;
 
-    private void Awake()
-    {
-        fallingParticles = GameObject.FindGameObjectWithTag("FallingParticles").GetComponent<ParticleSystem>();
-        tireBurnParticles = GameObject.FindGameObjectsWithTag("BurnOutParticles");
-        startLine = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelControllerOLD>().StartLinePos();
-    }
-
+    private Rigidbody playerRB;    
 
     private void Start()
     {
-        fallingParticles.Stop();
-        transform.position = startLine; 
+        playerRB = GetComponent<Rigidbody>();
+        resetCounter = 0f;
     }
-
 
     private void LateUpdate()
     {
-        //BurnOut(tireBurnParticles, gameObject.GetComponent<PlayerMovement>().isIgnition);
-        GameOver();
-    }
+        ResetPlayerPosition();
 
+        fallTimer = fallTimeOut;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "FinishLine")
+        if (other.tag == "PickUp")
         {
-            isFinished = true;
-        }
-        else if (other.gameObject.tag == "Platform")
-        {
-            fallingParticles.Stop();
-            Respawn();
+            GM.score += 1;
         }
     }
 
-
-    private void OnTriggerExit(Collider other)
+    void ResetPlayerPosition()
     {
-        if (other.gameObject.tag == "Platform")
-        {   
-            fallingParticles.Play();
-        }
-    }
+        //Using this method as I think i will be destroying/instanciting the spawn point
+        GameObject resetPoint = GameObject.FindGameObjectWithTag("Respawn");
 
-
-    private void OnCollisionStay(Collision collision)
-    {
-        WallCollision(collision);
-    }
-
-
-    void WallCollision(Collision collision)
-    {
-        if (collision.gameObject.tag == "DamageWall")
+        //Reset Player position to a respawn marker
+        if (resetCounter > fallTimeOut)
         {
-            playerHealth -= 1;
-            Debug.Log(playerHealth);
+            print("Respawn");
+            transform.position = resetPoint.transform.position;
+            PlayerMovement.isIgnition = false;
+            PlayerMovement.isFalling = false;
+            playerRB.velocity = new Vector3();
+            playerLives -= 1;
+        }
+
+        //Set and reset counter depending if player is falling
+        if (PlayerMovement.isFalling != true)
+        {
+            resetCounter = 0f;
+        }
+        else
+        {
+            resetCounter += Time.deltaTime;
         }
     }
-
-
-    void Respawn()
-    {
-        if(GameObject.Find("Respawn") != null)
-        {
-            Destroy(GameObject.Find("Respawn"));
-        }
-
-        GameObject respawnPos = new GameObject("Respawn");
-
-        respawnPos.transform.position = transform.position;
-        respawnPos.transform.rotation = Quaternion.identity;
-
-    }
-
-
-    void IsFalling(Collider other)
-    {
-        if (other.gameObject.tag == "Platform")
-        {
-            isFalling = false;
-
-            print("Entered!");
-            print(transform.position - startLine);
-        }
-    }
-
-
-    private void BurnOut(GameObject[] particles, bool ignition)
-    {
-        foreach (GameObject particle in particles)
-        {
-            if (ignition)
-            {
-                particle.GetComponent<ParticleSystem>().Stop();
-            }
-        }
-    }
-
-    
-    void GameOver()
-    {
-        if (isFinished == true)
-        {
-            //have this trigger the end of the level and load up the next one
-            //or maybe cutscene type thing?? 
-            transform.position = startLine;
-            Debug.Log("Winner");
-        }
-        else if (playerLives == 0)
-        {
-            //Have this go to a player death page to restart level
-            transform.position = startLine;
-            Debug.Log("GAMEOVER!!");
-        }
-    }
-    
 
 }
