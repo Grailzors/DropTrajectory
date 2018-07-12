@@ -20,20 +20,31 @@ public class CameraController : MonoBehaviour {
 
     private void LateUpdate()
     {
-        mainCam.transform.position = player.transform.position + camOffset;
+        CamMove();
         CamFOVControl();
-        //Test
+    }
+
+    void CamMove()
+    {
+        //Need to make this lerp between these positions using Vector3.lerp
+        if (PlayerMovement.isFalling == false)
+        {
+            mainCam.transform.position = player.transform.position + camOffset;
+        }
+        else
+        {
+            mainCam.transform.position = player.transform.position + camOffset + new Vector3(0f, 30f, 0f);
+        }
+        
     }
 
     void CamFOVControl()
     {
-        float x = player.transform.rotation.x;
-
-        if (x <= 0f)
+        if (PlayerMovement.isFalling == false)
         {
             mainCam.fieldOfView = Mathf.Clamp(mainCam.fieldOfView - (1f * Time.deltaTime) * camZoomInSpeed, 60f, 90f);
         }
-        else if (x >= 0)
+        else
         {
             mainCam.fieldOfView = Mathf.Clamp(mainCam.fieldOfView + (1f * Time.deltaTime) * camZoomOutSpeed, 60f, 90f);
         }

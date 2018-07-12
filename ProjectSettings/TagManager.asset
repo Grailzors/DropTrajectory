@@ -25,11 +25,11 @@ TagManager:
   - UI
   - 
   - 
-  - PlatformStart
-  - PlatformFinish
-  - PlatformStraight
-  - PlatformHill
-  - PlatformIntersection
+  - PickUpContainer
+  - PickUpContents
+  - PickUpPlow
+  - 
+  - 
   - 
   - 
   - 

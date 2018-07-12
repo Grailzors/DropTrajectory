@@ -12,6 +12,10 @@ public class PlayerManager : MonoBehaviour {
     public int playerLives;
     public float fallTimeOut = 0f;
 
+    [Header("Player Particle Systems")]
+    public ParticleSystem[] fallParticles;
+    public ParticleSystem[] tireSmoke;
+
     public static float screenFadeValue;
     public static float resetCounter;
     public static float fallTimer;
@@ -22,11 +26,14 @@ public class PlayerManager : MonoBehaviour {
     {
         playerRB = GetComponent<Rigidbody>();
         resetCounter = 0f;
+
+        PlayTireSmoke();
     }
 
     private void LateUpdate()
     {
         ResetPlayerPosition();
+        PlayFallingParticles();
 
         fallTimer = fallTimeOut;
     }
@@ -65,5 +72,40 @@ public class PlayerManager : MonoBehaviour {
             resetCounter += Time.deltaTime;
         }
     }
+    
+    void PlayFallingParticles()
+    {
+        foreach (ParticleSystem particles in fallParticles)
+        {
+            if (PlayerMovement.isFalling == false)
+            {
+                particles.Stop();
+            }
+            else
+            {
+                particles.Play();
+            }
+        }
+    }
 
+    //Move from Start to lateupdate when the burnout stuff is sorted out
+    void PlayTireSmoke()
+    {
+        foreach (ParticleSystem smoke in tireSmoke)
+        {
+            smoke.Stop();
+            
+            /*
+             * Currently off because it will be tied in with a burnout before the car goes 
+            if (PlayerMovement.isFalling == false)
+            {
+                smoke.Stop();
+            }
+            else
+            {
+                smoke.Play();
+            }
+            */
+        }
+    }
 }
