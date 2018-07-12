@@ -12,6 +12,8 @@ ModelImporter:
     100008: FrontLWheel
     100010: FrontRWheel
     100012: Wheels
+    100014: FrontLWheelRot
+    100016: FrontRWheelRot
     400000: //RootNode
     400002: BackLWheel
     400004: BackRWheel
@@ -19,6 +21,8 @@ ModelImporter:
     400008: FrontLWheel
     400010: FrontRWheel
     400012: Wheels
+    400014: FrontLWheelRot
+    400016: FrontRWheelRot
     2300000: BackLWheel
     2300002: BackRWheel
     2300004: Chasis
