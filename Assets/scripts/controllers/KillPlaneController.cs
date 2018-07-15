@@ -22,7 +22,7 @@ public class KillPlaneController : MonoBehaviour {
         //This currently not deleting platforms as i am passing them
         if (other.tag != "Player")
         {
-            print(other.name);
+            //print(other.name);
             DestroyObject(other.gameObject);
         }        
     }
