@@ -5,6 +5,6 @@ using UnityEngine;
 public class GM : MonoBehaviour {
 
     public static int score;
-
-
+    public static bool gameOver;
+    
 }

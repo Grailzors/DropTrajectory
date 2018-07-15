@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4987822101964660}
   - component: {fileID: 65314612085780696}
   - component: {fileID: 114702531688075314}
+  - component: {fileID: 122465788433202932}
   m_Layer: 8
   m_Name: CratesPickUp
   m_TagString: PickUp
@@ -670,4 +671,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b137b13deaa54289abe90ea81a4ef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCol: {fileID: 0}
+--- !u!122 &122465788433202932
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463447718954948}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278248447
+  m_Size: 5

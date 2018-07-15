@@ -14,15 +14,18 @@ public class CameraController : MonoBehaviour {
     public float camZoomInSpeed = 150f;
     public float camZoomOutSpeed = 10f;
 
-    private void LateUpdate()
+    private void Update()
     {
         CamMove();
-        //CamFOVControl();
+        CamFOVControl();
     }
 
     //Not working look at fixing with a simple rotational offset on a gameobject parented to the player
     void CamMove()
     {
+
+        transform.position = camEndPoint.transform.position;
+        transform.rotation = camEndPoint.transform.rotation;
         /*
         float x = transform.rotation.x;
 

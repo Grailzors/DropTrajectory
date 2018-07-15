@@ -6,36 +6,56 @@ public class PlayerManager : MonoBehaviour {
 
     //PLAYER MANAGER NEEDS TO HANDLE PLAYER RESPAWN
     [Header("Player Components")]
-    public GameObject player;
+    public GameObject rayPoint;
 
     [Header("Player Variables")]
     public int playerLives;
     public float fallTimeOut = 0f;
+    public float rayLength = 500f;
+    public float rayTargetSize = 5f;
 
     [Header("Player Particle Systems")]
     public ParticleSystem[] fallParticles;
     public ParticleSystem[] tireSmoke;
 
+    public static GameObject player;
     public static float screenFadeValue;
     public static float resetCounter;
     public static float fallTimer;
 
-    private Rigidbody playerRB;    
+    private Rigidbody playerRB;
+    private GameObject rayTarget;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void Start()
     {
         playerRB = GetComponent<Rigidbody>();
         resetCounter = 0f;
 
+        MoveToStartPos();
         PlayTireSmoke();
+    }
+
+    private void Update()
+    {
+        FallTarget();
     }
 
     private void LateUpdate()
     {
-        ResetPlayerPosition();
+        //ResetPlayerPosition();
         PlayFallingParticles();
 
         fallTimer = fallTimeOut;
+    }
+
+    private void FixedUpdate()
+    {
+        //FallTarget();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +65,12 @@ public class PlayerManager : MonoBehaviour {
             GM.score += 1;
         }
     }
+
+    void MoveToStartPos()
+    {
+        transform.position = GameObject.FindGameObjectWithTag("StartPosition").transform.position;
+    }
+
 
     void ResetPlayerPosition()
     {
@@ -106,6 +132,45 @@ public class PlayerManager : MonoBehaviour {
                 smoke.Play();
             }
             */
+        }
+    }
+
+
+    void FallTarget()
+    {
+        if (PlayerMovement.isFalling == true)
+        {
+            RaycastHit hit;
+
+            if (rayTarget == null)
+            {
+                rayTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                rayTarget.GetComponent<SphereCollider>().enabled = false;
+                rayTarget.transform.localScale = new Vector3(rayTargetSize, rayTargetSize, rayTargetSize);
+                rayTarget.GetComponent<Renderer>().material.color = Color.red;
+            }
+            
+            //Cast ray to see where the car will fall
+            if (Physics.Raycast(rayPoint.transform.position, rayPoint.transform.forward, out hit, rayLength))
+            {
+                //draw the sphere on the objects it collides with or draw sphere at the end of the ray
+                Debug.DrawRay(rayPoint.transform.position, rayPoint.transform.forward * hit.distance, Color.green);
+
+                //Move rayTarget
+                rayTarget.transform.position = hit.point;
+
+            }
+            else
+            {
+                Debug.DrawRay(rayPoint.transform.position, rayPoint.transform.forward * rayLength, Color.white);
+
+                rayTarget.transform.position = rayPoint.transform.position + rayPoint.transform.forward * rayLength;
+            }
+            
+        }
+        else
+        {
+            DestroyObject(rayTarget);
         }
     }
 }
