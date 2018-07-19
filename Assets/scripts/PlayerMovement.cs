@@ -56,7 +56,23 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    
+    void PlayerMove()
+    {
+        float pAngle;
+        Vector3 pAxis;
+
+        playerRB.velocity = transform.forward * moveSpeed;
+
+        transform.rotation.ToAngleAxis(out pAngle, out pAxis);
+        
+        print(playerRB.velocity.sqrMagnitude);
+
+        playerRB.AddForce(new Vector3(h * 5000, 0f, 0f));
+        
+
+    }
+
+    /*
     //Keep this control method works well atm and can be modified for better feel
     void PlayerMove()
     {
@@ -66,23 +82,8 @@ public class PlayerMovement : MonoBehaviour {
 
         playerTran.position += new Vector3((h * horizontalSpeed), falling, z);
     }
-    
-
-    /*
-     * I like the feel of this one but need to play around with the prefab
-     * settings to get the car reacting right to the movement
-     * 
-    void PlayerMove()
-    {
-        //playerRB.velocity = transform.forward * moveSpeed;
-        float z = moveSpeed * Time.deltaTime;
-        float falling = (fallStrength * Time.deltaTime) * -1;
-        transform.position += new Vector3(0f, falling, z);
-
-        playerRB.AddForce(new Vector3(h * test, 0f, 0f));
-
-    }
     */
+
     void PlayerFalling()
     {
         //Get the y position of the player and normalize it to see if it is falling 
