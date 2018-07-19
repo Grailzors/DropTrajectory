@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour {
     private Rigidbody playerRB;
     private GameObject rayTarget;
 
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -51,11 +52,6 @@ public class PlayerManager : MonoBehaviour {
         PlayFallingParticles();
 
         fallTimer = fallTimeOut;
-    }
-
-    private void FixedUpdate()
-    {
-        //FallTarget();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,7 +131,6 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-
     void FallTarget()
     {
         if (PlayerMovement.isFalling == true)
@@ -149,7 +144,7 @@ public class PlayerManager : MonoBehaviour {
                 rayTarget.transform.localScale = new Vector3(rayTargetSize, rayTargetSize, rayTargetSize);
                 rayTarget.GetComponent<Renderer>().material.color = Color.red;
             }
-            
+
             //Cast ray to see where the car will fall
             if (Physics.Raycast(rayPoint.transform.position, rayPoint.transform.forward, out hit, rayLength))
             {
@@ -158,15 +153,13 @@ public class PlayerManager : MonoBehaviour {
 
                 //Move rayTarget
                 rayTarget.transform.position = hit.point;
-
             }
             else
             {
                 Debug.DrawRay(rayPoint.transform.position, rayPoint.transform.forward * rayLength, Color.white);
 
                 rayTarget.transform.position = rayPoint.transform.position + rayPoint.transform.forward * rayLength;
-            }
-            
+            } 
         }
         else
         {
