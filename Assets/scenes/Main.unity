@@ -531,23 +531,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4136289994474382, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136289994474382, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.8660254
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136289994474382, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 114789132893509182, guid: 5ebac836d3060354ba02ddcd0390a2d3,
-        type: 2}
-      propertyPath: rayTargetSize
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
   m_IsPrefabParent: 0
@@ -647,11 +630,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
-        type: 2}
-      propertyPath: platformPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4573059749677232, guid: 7791c495c09e520448abc197cf6182de, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -684,35 +662,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1955979284427928, guid: 7791c495c09e520448abc197cf6182de, type: 2}
-      propertyPath: m_Name
-      value: LevelController
-      objectReference: {fileID: 0}
-    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
-        type: 2}
-      propertyPath: platformZ
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
-        type: 2}
-      propertyPath: platformX
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}
       propertyPath: platformPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 850320101}
-    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
-        type: 2}
-      propertyPath: platformPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1361786357683024, guid: 0f48f8b0979ba83468f8375f1258d92f,
-        type: 2}
-    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
-        type: 2}
-      propertyPath: platformY
-      value: -100
+    - target: {fileID: 1955979284427928, guid: 7791c495c09e520448abc197cf6182de, type: 2}
+      propertyPath: m_Name
+      value: LevelController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7791c495c09e520448abc197cf6182de, type: 2}
