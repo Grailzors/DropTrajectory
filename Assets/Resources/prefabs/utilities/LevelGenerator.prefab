@@ -58,6 +58,11 @@ MonoBehaviour:
     type: 2}
   initialPlatformNum: 35
   spawnPlatformTimer: 2
+  setDecPrefabs:
+  - {fileID: 1456260749048352, guid: 6879c53b73f451b4ca25397478929e72, type: 2}
+  amountPerPlatformMax: 5
+  amountPerPlatformMin: 2
+  positionMultiplier: 1.5
   platformX: 200
   platformY: -100
-  platformZ: 50
+  platformZ: 100
