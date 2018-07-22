@@ -10,6 +10,11 @@ public class LevelController : MonoBehaviour {
     public int initialPlatformNum = 5;
     public float spawnPlatformTimer = 10;
 
+    [Header("SetDec Controls")]
+    public GameObject[] setDecPrefabs;
+    public float amountPerPlatformMax = 5f;
+    public float amountPerPlatformMin = 2f;
+    public float positionMultiplier = 80f;
 
     [Header("Platform Axis Controls")]
     public float platformX = 0f;
@@ -18,6 +23,7 @@ public class LevelController : MonoBehaviour {
 
     private GameObject killPlane;
     private GameObject platformsContainer;
+    private GameObject setDecContainer;
     private float y = 0f;
     private float x = 0f;
     private float z = 0f;
@@ -36,41 +42,15 @@ public class LevelController : MonoBehaviour {
         }
     }
 
-    /*
-    void GenerateLevel()
-    {
-        float y = 0f;
-        float x = 0f;
-        float z = 0f;
-
-        //creating the container for the platforms generated  
-        GameObject platformsContainer = new GameObject("PlatformContainer");
-        platformsContainer.transform.position = new Vector3(0f, 0f, 0f);
-
-        //Setting the starting track 
-        GameObject initialPlatform = Instantiate(startPlatform, new Vector3(), Quaternion.identity);
-        initialPlatform.transform.parent = platformsContainer.transform;
-
-        if (initialPlatform != null)
-        {
-            for (int i = 0; i < platformNum; i++)
-            {
-                x = Random.Range(platformX * -1, platformX);
-                y += platformY;
-                z += platformZ;
-
-                GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
-                platform.transform.parent = platformsContainer.transform;
-            }
-        }
-    }
-    */
-
     void InitialGenerateLevel()
     {
         //creating the container for the platforms generated  
         platformsContainer = new GameObject("PlatformContainer");
         platformsContainer.transform.position = new Vector3(0f, 0f, 0f);
+
+        //creating the container for the platforms generated  
+        setDecContainer = new GameObject("SetDecContainer");
+        setDecContainer.transform.position = new Vector3(0f, 0f, 0f);
 
         //Setting the starting track 
         GameObject initialPlatform = Instantiate(startPlatform, new Vector3(), Quaternion.identity);
@@ -114,8 +94,26 @@ public class LevelController : MonoBehaviour {
     
     void InstancePlatform()
     {
+        //Create Platforms through the level and calls function to place setdec around it
         GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
         platform.transform.parent = platformsContainer.transform;
+
+        InstanceSetDec();
+    }
+
+    void InstanceSetDec()
+    {
+        //Create a bunch of setdec items around the platforms based on a random range between a max/min value
+        for (int i = 0; i < Random.Range(amountPerPlatformMin, amountPerPlatformMax + 1); i++)
+        {
+            float setDecX = Random.Range((x * positionMultiplier) / 2, x * positionMultiplier);
+            float setDecY = Random.Range((y * positionMultiplier) / 2, y * positionMultiplier);
+            float setDecZ = Random.Range((z * positionMultiplier) / 2, z * positionMultiplier);
+
+            GameObject setDec = Instantiate(setDecPrefabs[Random.Range(0, setDecPrefabs.Length)], new Vector3(setDecX , setDecY, setDecZ), Quaternion.identity);
+            setDec.transform.parent = setDecContainer.transform;
+        }
+        print("New SetDec");
     }
 
     void MakeKillPlane()
