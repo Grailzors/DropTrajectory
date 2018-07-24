@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour {
     public ParticleSystem[] tireSmoke;
 
     public static GameObject player;
+    public static GameObject respawn;
     public static float screenFadeValue;
     public static float resetCounter;
     public static float fallTimer;
@@ -60,6 +61,16 @@ public class PlayerManager : MonoBehaviour {
         {
             GM.score += 1;
         }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        
+    }
+
+    void ResetSpawnPos()
+    {
+
     }
 
     void MoveToStartPos()
