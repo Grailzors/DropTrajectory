@@ -10,8 +10,10 @@ public class LevelController : MonoBehaviour {
     public int initialPlatformNum = 5;
     public float spawnPlatformTimer = 10;
 
+    /*
     [Header("PickUp Controls")]
     public GameObject[] pickUpPrefabs;
+    */
 
     [Header("SetDec Controls")]
     public GameObject[] setDecPrefabs;
@@ -109,12 +111,14 @@ public class LevelController : MonoBehaviour {
         InstanceSetDec();
     }
 
+    /*
     void InstancePickUp()
     {
         //Create PickUps through the level
         GameObject pickUp = Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
         pickUp.transform.parent = pickUpsContainer.transform;
     }
+    */
 
     void InstanceSetDec()
     {
