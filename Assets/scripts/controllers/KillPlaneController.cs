@@ -19,12 +19,9 @@ public class KillPlaneController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        //This currently not deleting platforms as i am passing them
-        if (other.tag != "Player")
-        {
-            //print(other.name);
-            DestroyObject(other.gameObject);
-        }        
+        print(other.name);
+        //Destroy gameObject top node so hole asset is destroyed
+        DestroyObject(other.gameObject.transform.parent.gameObject);
     }
 
     //Move the killPlane in relation to the player

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour {
 
-    [Header("Platform Control")]
-    public GameObject[] platformPrefabs;
+    [Header("Platform Controls")]
     public GameObject startPlatform;
+    public GameObject[] platformPrefabs;
     public int initialPlatformNum = 5;
     public float spawnPlatformTimer = 10;
+
+    [Header("PickUp Controls")]
+    public GameObject[] pickUpPrefabs;
 
     [Header("SetDec Controls")]
     public GameObject[] setDecPrefabs;
@@ -23,6 +26,7 @@ public class LevelController : MonoBehaviour {
 
     private GameObject killPlane;
     private GameObject platformsContainer;
+    private GameObject pickUpsContainer;
     private GameObject setDecContainer;
     private float y = 0f;
     private float x = 0f;
@@ -36,7 +40,7 @@ public class LevelController : MonoBehaviour {
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) == true)
+        if(Input.GetKeyDown(KeyCode.Space) == true && killPlane == null)
         {
             MakeKillPlane();
         }
@@ -47,6 +51,10 @@ public class LevelController : MonoBehaviour {
         //creating the container for the platforms generated  
         platformsContainer = new GameObject("PlatformContainer");
         platformsContainer.transform.position = new Vector3(0f, 0f, 0f);
+
+        //creating the container for the pickups generated  
+        pickUpsContainer = new GameObject("SetDecContainer");
+        pickUpsContainer.transform.position = new Vector3(0f, 0f, 0f);
 
         //creating the container for the platforms generated  
         setDecContainer = new GameObject("SetDecContainer");
@@ -101,6 +109,13 @@ public class LevelController : MonoBehaviour {
         InstanceSetDec();
     }
 
+    void InstancePickUp()
+    {
+        //Create PickUps through the level
+        GameObject pickUp = Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
+        pickUp.transform.parent = pickUpsContainer.transform;
+    }
+
     void InstanceSetDec()
     {
         //Create a bunch of setdec items around the platforms based on a random range between a max/min value
@@ -120,12 +135,33 @@ public class LevelController : MonoBehaviour {
     {
         killPlane = GameObject.CreatePrimitive(PrimitiveType.Cube);
         killPlane.name = "KillPlane";
+        killPlane.layer = 12;
+        //killPlane.AddComponent<Rigidbody>();
         killPlane.AddComponent<KillPlaneController>();
+
+        /*
+        //Set Rigidbody parameters 
+        killPlane.GetComponent<Rigidbody>().useGravity = false;
+        killPlane.GetComponent<Rigidbody>().isKinematic = true;
+        killPlane.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        */
+
+        //Set other componant parameters
         killPlane.GetComponent<MeshRenderer>().enabled = false;
         killPlane.GetComponent<Collider>().isTrigger = true;
-        killPlane.transform.position = new Vector3(0f, 1000f, 0f);
-        killPlane.transform.localScale = new Vector3(4000f, 1f, 4000f);
 
+        killPlane.transform.position = new Vector3(0f, 1000f, 0f);
+        killPlane.transform.localScale = new Vector3(9999f, 10f, 9999f);
+        
         print("Made Kill Plane");
     }
 }
+
+/*
+[System.Serializable]
+public class RandomPlacement
+{
+
+
+}
+*/
