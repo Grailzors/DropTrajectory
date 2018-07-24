@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefabs:
+  - {fileID: 1801993171023966, guid: b23d482aa82ee4883a9a5c44bd2db2da, type: 2}
   - {fileID: 1361786357683024, guid: 0f48f8b0979ba83468f8375f1258d92f, type: 2}
-  - {fileID: 0}
   startPlatform: {fileID: 1754547989520128, guid: b3be849096a32438596198354daff594,
     type: 2}
   initialPlatformNum: 35
