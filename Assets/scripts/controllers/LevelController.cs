@@ -136,17 +136,7 @@ public class LevelController : MonoBehaviour {
         killPlane = GameObject.CreatePrimitive(PrimitiveType.Cube);
         killPlane.name = "KillPlane";
         killPlane.layer = 12;
-        //killPlane.AddComponent<Rigidbody>();
         killPlane.AddComponent<KillPlaneController>();
-
-        /*
-        //Set Rigidbody parameters 
-        killPlane.GetComponent<Rigidbody>().useGravity = false;
-        killPlane.GetComponent<Rigidbody>().isKinematic = true;
-        killPlane.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        */
-
-        //Set other componant parameters
         killPlane.GetComponent<MeshRenderer>().enabled = false;
         killPlane.GetComponent<Collider>().isTrigger = true;
 
