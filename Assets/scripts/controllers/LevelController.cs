@@ -10,23 +10,26 @@ public class LevelController : MonoBehaviour {
     public int initialPlatformNum = 5;
     public float spawnPlatformTimer = 10;
 
-    
+    [Header("Platform Axis Controls")]
+    public float platformX = 0f;
+    public float platformY = 0f;
+    public float platformZ = 0f;
+
     [Header("PickUp Controls")]
     public GameObject[] pickUpPrefabs;
+    [Range(0,100)]
+    public int pickUpSpawnPercentage = 50;
+    public int numOfConsecutivePickUps = 2;
     public float pickUpsPerPlatformMax = 5f;
     public float pickUpsPerPlatformMin = 2f;
-    public float pickUpsPositionMultiplier = 80f;
 
     [Header("SetDec Controls")]
     public GameObject[] setDecPrefabs;
     public float setDecPerPlatformMax = 5f;
     public float setDecPerPlatformMin = 2f;
     public float setDecPositionMultiplier = 80f;
-
-    [Header("Platform Axis Controls")]
-    public float platformX = 0f;
-    public float platformY = 0f;
-    public float platformZ = 0f;
+    public float setDecDistanceMax = 0f;
+    public float setDecDistanceMin = 0f;
 
     private GameObject killPlane;
     private GameObject platformsContainer;
@@ -35,12 +38,15 @@ public class LevelController : MonoBehaviour {
     private float y = 0f;
     private float x = 0f;
     private float z = 0f;
+    private int numPickUps = 0;
+
 
     private void Start()
     {
         InitialGenerateLevel();
         StartCoroutine(GeneratePlatforms());
     }
+
 
     private void Update()
     {
@@ -50,6 +56,7 @@ public class LevelController : MonoBehaviour {
         }
     }
 
+
     void InitialGenerateLevel()
     {
         //creating the container for the platforms generated  
@@ -57,7 +64,7 @@ public class LevelController : MonoBehaviour {
         platformsContainer.transform.position = new Vector3(0f, 0f, 0f);
 
         //creating the container for the pickups generated  
-        pickUpsContainer = new GameObject("SetDecContainer");
+        pickUpsContainer = new GameObject("PickUpsContainer");
         pickUpsContainer.transform.position = new Vector3(0f, 0f, 0f);
 
         //creating the container for the platforms generated  
@@ -72,60 +79,82 @@ public class LevelController : MonoBehaviour {
         {
             for (int i = 0; i < initialPlatformNum; i++)
             {
-                SpawnAxisUpdate();
-                InstancePlatform();
+                PopulateLevel();
             }
         }
 
         print("Finished Initial Generation");
     }
     
+
     //Generating a new platform ever 'x' seconds after initial level set up
     IEnumerator GeneratePlatforms()
     {
-        print("Procedural Generation Started");
+        //print("Procedural Generation Started");        
 
         while (GM.gameOver == false)
         {
             yield return new WaitForSeconds(Mathf.Clamp(spawnPlatformTimer - PlayerMovement.fallingCounter, 0.1f, spawnPlatformTimer));
 
-            SpawnAxisUpdate();
-            InstancePlatform();
-            print("New Platform");
+            PopulateLevel();
         }
 
-        print("GameOver level generation stopped");
+        //print("GameOver level generation stopped");
     }
+
 
     void SpawnAxisUpdate()
     {
+        //Update the X,Y,Z varaiables (asset placement in world)
         x = Random.Range(platformX * -1, platformX);
         y += Random.Range(platformY - (platformY / 2), platformY);
         z += Random.Range(platformZ - (platformZ / 2), platformZ);
     }
     
+
+    //Populate the Level using this chunk of code
+    void PopulateLevel()
+    {
+        //Update the X,Y,Z position for the next plaform or pickUp
+        SpawnAxisUpdate();
+
+        //Choose what type of prefab to instanciate between platform or pickUp
+        int randNum = Random.Range(0, 101);
+
+        //Here i am forcing a platform to be made if the numPickUps matches my 
+        //numOfConsecutivePickUps threshold
+        if (randNum > pickUpSpawnPercentage || numPickUps >= numOfConsecutivePickUps)
+        {
+            numPickUps = 0;
+            InstancePlatform();
+        }
+        else if (randNum < pickUpSpawnPercentage)
+        {
+            numPickUps += 1;
+            InstancePickUp();
+        }
+
+        print("New Platform");
+    }
+
+
     void InstancePlatform()
     {
         //Create Platforms through the level and calls function to place setdec around it
         GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
         platform.transform.parent = platformsContainer.transform;
 
-        InstancePickUp();
         InstanceSetDec();
     }
 
-    
+
     void InstancePickUp()
     {
-        //Create a bunch of setdec items around the platforms based on a random range between a max/min value
+        //Create pickUps around the platforms based on a random range between a max/min value
         for (int i = 0; i < Random.Range(pickUpsPerPlatformMin, pickUpsPerPlatformMax); i++)
         {
-            float pickUpX = Random.Range((x + pickUpsPositionMultiplier) / 2, x + pickUpsPositionMultiplier);
-            float pickUpY = Random.Range((y + pickUpsPositionMultiplier) / 2, y + pickUpsPositionMultiplier);
-            float pickUpZ = Random.Range((z + pickUpsPositionMultiplier) / 2, z + pickUpsPositionMultiplier);
-
             //Create PickUps through the level
-            GameObject pickUp = Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], new Vector3(pickUpX, pickUpY, pickUpZ), Quaternion.identity);
+            GameObject pickUp = Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
             pickUp.transform.parent = pickUpsContainer.transform;
 
             print("New PickUp");
@@ -142,14 +171,27 @@ public class LevelController : MonoBehaviour {
             float setDecY = Random.Range((y + setDecPositionMultiplier) / 2, y + setDecPositionMultiplier);
             float setDecZ = Random.Range((z + setDecPositionMultiplier) / 2, z + setDecPositionMultiplier);
 
-            GameObject setDec = Instantiate(setDecPrefabs[Random.Range(0, setDecPrefabs.Length)], new Vector3(setDecX , setDecY, setDecZ), Quaternion.identity);
-            setDec.transform.parent = setDecContainer.transform;
+            float d = Vector3.Distance(new Vector3(x, y, z), new Vector3(setDecX, setDecY, setDecZ));
+
+            if (d < setDecDistanceMin || d > setDecDistanceMax)
+            {
+                //Create PickUps through the level
+                GameObject setDec = Instantiate(setDecPrefabs[Random.Range(0, setDecPrefabs.Length)], new Vector3(setDecX, setDecY, setDecZ), Quaternion.identity);
+                setDec.transform.parent = setDecContainer.transform;
+
+                print("New setDec");
+            }
+            else
+            {
+                print("No setDec");
+            }
         }
-        print("New SetDec");
     }
+
 
     void MakeKillPlane()
     {
+        //Create then modify the killPlane gameObject
         killPlane = GameObject.CreatePrimitive(PrimitiveType.Cube);
         killPlane.name = "KillPlane";
         killPlane.layer = 12;
