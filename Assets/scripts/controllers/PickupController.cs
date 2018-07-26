@@ -19,7 +19,7 @@ public class PickupController : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++)
             {
                 GameObject child = transform.GetChild(i).gameObject;
-                print(child);
+                //print(child);
 
                 if (other.gameObject.name != "Player")
                 {
@@ -38,6 +38,7 @@ public class PickupController : MonoBehaviour
             yield return new WaitForSeconds(destroyObjectTime);
 
             DestroyObject(gameObject);
+            print("Destroyed: " + gameObject);
         }
     }
 
