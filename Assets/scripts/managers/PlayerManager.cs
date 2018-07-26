@@ -28,18 +28,13 @@ public class PlayerManager : MonoBehaviour {
     private GameObject rayTarget;
 
 
-    private void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
     private void Start()
     {
+        player = gameObject;
         playerRB = GetComponent<Rigidbody>();
         resetCounter = 0f;
 
         MoveToStartPos();
-        PlayTireSmoke();
     }
 
     private void Update()
@@ -51,6 +46,9 @@ public class PlayerManager : MonoBehaviour {
     {
         //ResetPlayerPosition();
         PlayFallingParticles();
+
+        //Maybe find a better way for this to be done? coroutine?
+        PlayTireSmoke();
 
         fallTimer = fallTimeOut;
     }
@@ -126,8 +124,15 @@ public class PlayerManager : MonoBehaviour {
     {
         foreach (ParticleSystem smoke in tireSmoke)
         {
-            smoke.Stop();
-            
+            if (PlayerMovement.isIgnition == true)
+            {
+                smoke.Stop();
+            }
+            else if (PlayerMovement.isIgnition == false)
+            {
+                smoke.Play();
+            }
+
             /*
              * Currently off because it will be tied in with a burnout before the car goes 
             if (PlayerMovement.isFalling == false)
