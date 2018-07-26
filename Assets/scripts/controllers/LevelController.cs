@@ -119,7 +119,7 @@ public class LevelController : MonoBehaviour {
         SpawnAxisUpdate();
 
         //Choose what type of prefab to instanciate between platform or pickUp
-        int randNum = Random.Range(0, 101);
+        int randNum = Random.Range(0, 100);
 
         //Here i am forcing a platform to be made if the numPickUps matches my 
         //numOfConsecutivePickUps threshold
@@ -128,13 +128,13 @@ public class LevelController : MonoBehaviour {
             numPickUps = 0;
             InstancePlatform();
         }
-        else if (randNum < pickUpSpawnPercentage)
+        else if (randNum <= pickUpSpawnPercentage)
         {
             numPickUps += 1;
             InstancePickUp();
         }
 
-        print("New Platform");
+        InstanceSetDec();
     }
 
 
@@ -144,7 +144,7 @@ public class LevelController : MonoBehaviour {
         GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
         platform.transform.parent = platformsContainer.transform;
 
-        InstanceSetDec();
+        print("New Platform");
     }
 
 
