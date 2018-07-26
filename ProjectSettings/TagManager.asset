@@ -17,6 +17,7 @@ TagManager:
   - FrontWheels
   - StartLine
   - SetDec
+  - BankPlatform
   layers:
   - Default
   - TransparentFX
