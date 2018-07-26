@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc4598f882a8664e94b415173becac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 0}
+  colorCorrect: {r: 0, g: 1, b: 1, a: 1}
+  colorError: {r: 1, g: 0, b: 0, a: 1}
   radius: 1
 --- !u!23 &100159849
 MeshRenderer:
@@ -621,18 +622,38 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}
-      propertyPath: pickUpsPositionMultiplier
+      propertyPath: pickUpsDistanceMin
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}
-      propertyPath: setDecPositionMultiplier
+      propertyPath: pickUpsDistanceMax
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}
-      propertyPath: positionMultiplier
+      propertyPath: setDecDistanceMax
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: setDecDistanceMin
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: initialPlatformNum
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: spawnPlatformTimer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: pickUpsPositionMultiplier
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7791c495c09e520448abc197cf6182de, type: 2}
