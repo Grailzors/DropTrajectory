@@ -51,18 +51,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25051791c30e06a4a816c3db7ec85025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformPrefabs:
-  - {fileID: 1801993171023966, guid: b23d482aa82ee4883a9a5c44bd2db2da, type: 2}
-  - {fileID: 1361786357683024, guid: 0f48f8b0979ba83468f8375f1258d92f, type: 2}
   startPlatform: {fileID: 1754547989520128, guid: b3be849096a32438596198354daff594,
     type: 2}
+  platformPrefabs:
+  - {fileID: 1801993171023966, guid: b23d482aa82ee4883a9a5c44bd2db2da, type: 2}
   initialPlatformNum: 35
   spawnPlatformTimer: 2
+  pickUpPrefabs:
+  - {fileID: 1361786357683024, guid: 0f48f8b0979ba83468f8375f1258d92f, type: 2}
+  pickUpsPerPlatformMax: 1
+  pickUpsPerPlatformMin: 0
+  pickUpsPositionMultiplier: 3
   setDecPrefabs:
   - {fileID: 1456260749048352, guid: 6879c53b73f451b4ca25397478929e72, type: 2}
-  amountPerPlatformMax: 5
-  amountPerPlatformMin: 2
-  positionMultiplier: 1.5
+  setDecPerPlatformMax: 12
+  setDecPerPlatformMin: 2
+  setDecPositionMultiplier: 4
   platformX: 200
   platformY: -100
   platformZ: 100
