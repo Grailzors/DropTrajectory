@@ -854,7 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc4598f882a8664e94b415173becac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.5034485, b: 1, a: 1}
+  colorCorrect: {r: 0, g: 1, b: 1, a: 1}
+  colorError: {r: 1, g: 0, b: 0, a: 1}
   radius: 1
 --- !u!114 &114468909272735816
 MonoBehaviour:
@@ -867,7 +868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc4598f882a8664e94b415173becac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.07586217, g: 1, b: 0, a: 1}
+  colorCorrect: {r: 0, g: 1, b: 1, a: 1}
+  colorError: {r: 1, g: 0, b: 0, a: 1}
   radius: 1
 --- !u!114 &114789132893509182
 MonoBehaviour:
@@ -901,7 +903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34405a90ba25d0248b24a1f8fe595f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayPoint: {fileID: 1639756691954098}
   carObject: {fileID: 1291627041089798}
   carFrontPivot: {fileID: 1997925202911856}
   carPart:
