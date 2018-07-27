@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.41176474, g: 0.38431376, b: 0.36078432, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -328,6 +328,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4422862231879316, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493906519407908, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136289994474382, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
   m_IsPrefabParent: 0
@@ -385,6 +397,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: bankPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
         type: 2}
       propertyPath: platformPrefabs.Array.size
@@ -472,6 +489,17 @@ Prefab:
       value: 
       objectReference: {fileID: 1277663719191294, guid: 433c710efaeb56541b2b170204b0c817,
         type: 2}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: bankPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1277663719191294, guid: 433c710efaeb56541b2b170204b0c817,
+        type: 2}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: spawnBank
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7791c495c09e520448abc197cf6182de, type: 2}
   m_IsPrefabParent: 0
