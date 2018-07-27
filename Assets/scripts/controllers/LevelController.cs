@@ -7,8 +7,10 @@ public class LevelController : MonoBehaviour {
     [Header("Platform Controls")]
     public GameObject startPlatform;
     public GameObject[] platformPrefabs;
+    public GameObject[] bankPrefabs;
     public int initialPlatformNum = 5;
     public float spawnPlatformTimer = 10;
+    public int spawnBank = 0;
 
     [Header("Platform Axis Controls")]
     public float platformX = 0f;
@@ -39,6 +41,7 @@ public class LevelController : MonoBehaviour {
     private float x = 0f;
     private float z = 0f;
     private int numPickUps = 0;
+    private int platformCount = 0;
 
 
     private void Start()
@@ -140,11 +143,27 @@ public class LevelController : MonoBehaviour {
 
     void InstancePlatform()
     {
-        //Create Platforms through the level and calls function to place setdec around it
-        GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
-        platform.transform.parent = platformsContainer.transform;
+        
+        if (platformCount < spawnBank)
+        {
+            //Create Platforms through the level and calls function to place setdec around it
+            GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
+            platform.transform.parent = platformsContainer.transform;
 
-        print("New Platform");
+            platformCount += 1;
+
+            print("New Platform");
+        }
+        else
+        {
+            //Create a new bank for every 'x' amount of platforms 
+            GameObject bank = Instantiate(bankPrefabs[Random.Range(0, bankPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
+            bank.transform.parent = platformsContainer.transform;
+
+            platformCount = 0;
+
+            print("New Bank");
+        }
     }
 
 
