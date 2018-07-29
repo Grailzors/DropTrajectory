@@ -19,7 +19,6 @@ public class PlayerManager : MonoBehaviour {
     public ParticleSystem[] tireSmoke;
 
     public static GameObject player;
-    public static GameObject respawn;
     public static float screenFadeValue;
     public static float resetCounter;
     public static float fallTimer;
@@ -39,7 +38,8 @@ public class PlayerManager : MonoBehaviour {
 
     private void Update()
     {
-        FallTarget();
+        //FallTarget();
+        ResetPlayerPosition();
     }
 
     private void LateUpdate()
@@ -63,12 +63,36 @@ public class PlayerManager : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        
+        ResetSpawnPos(col);
     }
 
-    void ResetSpawnPos()
+    void ResetSpawnPos(Collision col)
     {
+        GameObject colObject = col.gameObject;
 
+        //Check to see if a repawn point exists and delete it if it does
+        if (GameObject.FindGameObjectWithTag("Respawn") != null)
+        {
+            //print(GameObject.FindGameObjectWithTag("Respawn"));
+
+            DestroyObject(GameObject.FindGameObjectWithTag("Respawn"));
+        }
+
+        if (colObject.tag == "Platform")
+        {
+            //Create respawn object 
+            GameObject respawnPoint = new GameObject
+            {
+                name = "RespawnPoint",
+                tag = "Respawn"
+            };
+
+            //Get the reset position on the platform
+            Vector3 r = colObject.transform.Find("RespawnPoint").transform.position;
+            print("Found Respawn Point");
+
+            respawnPoint.transform.position = r;
+        }
     }
 
     void MoveToStartPos()
@@ -147,6 +171,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    /*
     void FallTarget()
     {
         if (PlayerMovement.isFalling == true)
@@ -182,4 +207,5 @@ public class PlayerManager : MonoBehaviour {
             DestroyObject(rayTarget);
         }
     }
+    */
 }
