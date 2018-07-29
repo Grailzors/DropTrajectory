@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4137470642093486}
   m_Layer: 0
-  m_Name: Platform1_RespawnPoint
+  m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4790507465071304}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4233609737210196
 Transform:
@@ -85,7 +85,7 @@ Transform:
   m_LocalScale: {x: 0.02, y: 0.1, z: 0.002}
   m_Children: []
   m_Father: {fileID: 4790507465071304}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4790507465071304
 Transform:
@@ -97,8 +97,8 @@ Transform:
   m_LocalPosition: {x: -0.42771, y: 495, z: 31}
   m_LocalScale: {x: 50, y: 10, z: 300}
   m_Children:
-  - {fileID: 4233609737210196}
   - {fileID: 4137470642093486}
+  - {fileID: 4233609737210196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
