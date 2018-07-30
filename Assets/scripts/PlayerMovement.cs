@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public float test = 0f;
-
     [Header("Control Variables")]
     public float moveSpeed = 5f;
     public float horizontalSpeed = 5f;
+    public float horizontalSmoothStep = 0f;
 
     private float fallStrength;
     private Rigidbody playerRB;
@@ -64,7 +63,8 @@ public class PlayerMovement : MonoBehaviour {
         float z = moveSpeed * Time.deltaTime;
         float falling = (fallStrength * Time.deltaTime) * -1;
 
-        playerTran.position += new Vector3((h * horizontalSpeed), falling, z);
+        //Trying some easing on the horizontal movement
+        playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed ), falling, z);
     }
     
 

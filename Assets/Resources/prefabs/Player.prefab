@@ -840,9 +840,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53aa999b93d96654ba07698e40f0f92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 0
   moveSpeed: 80
   horizontalSpeed: 7
+  horizontalSmoothStep: 0.2
 --- !u!114 &114193911573868258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -917,7 +917,7 @@ MonoBehaviour:
     - {fileID: 1527264144989752}
     - {fileID: 1853451627936530}
     - {fileID: 1424970965573166}
-  carFallAngle: 50
+  carFallAngle: 60
   carFallRotationSpeed: 25
   carRotationAngle: 45
   carRotationSpeed: 100
