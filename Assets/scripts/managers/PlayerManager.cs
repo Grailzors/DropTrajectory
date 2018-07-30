@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    //PLAYER MANAGER NEEDS TO HANDLE PLAYER RESPAWN
     [Header("Player Components")]
     public GameObject rayPoint;
 
@@ -70,16 +69,16 @@ public class PlayerManager : MonoBehaviour {
     {
         GameObject colObject = col.gameObject;
 
-        //Check to see if a repawn point exists and delete it if it does
-        if (GameObject.FindGameObjectWithTag("Respawn") != null)
-        {
-            //print(GameObject.FindGameObjectWithTag("Respawn"));
-
-            DestroyObject(GameObject.FindGameObjectWithTag("Respawn"));
-        }
-
         if (colObject.tag == "Platform")
         {
+            //Check to see if a repawn point exists and delete it if it does
+            if (GameObject.FindGameObjectWithTag("Respawn") != null)
+            {
+                //print(GameObject.FindGameObjectWithTag("Respawn"));
+
+                DestroyObject(GameObject.FindGameObjectWithTag("Respawn"));
+            }
+
             //Create respawn object 
             GameObject respawnPoint = new GameObject
             {
