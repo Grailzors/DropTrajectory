@@ -11,8 +11,6 @@ public class CameraController : MonoBehaviour {
     [Header("Camera Control Variables")]
     public float camRotateMax = 20f;
     public float camRotateMin = 0f;
-    public float camDollyUpSpeed = 0f;
-    public float camDollyDownSpeed = 0f;
     public float camZoomInSpeed = 150f;
     public float camZoomOutSpeed = 10f;
     public float camFovMin = 60f;
@@ -27,21 +25,16 @@ public class CameraController : MonoBehaviour {
 
     void CamMove()
     {
-        float angle;
-        Vector3 axis;
-
         if (PlayerMovement.isFalling == true)
         {
-            //camRotatePoint.transform.rotation = ;
+
+
         }
         else if (PlayerMovement.isFalling == false)
         {
 
+
         }
-
-        camRotatePoint.transform.rotation.ToAngleAxis(out angle, out axis);
-
-        angle = Mathf.Clamp(angle, camRotateMin, camRotateMax);
 
         transform.position = camPoint.transform.position;
         transform.rotation = camPoint.transform.rotation;
