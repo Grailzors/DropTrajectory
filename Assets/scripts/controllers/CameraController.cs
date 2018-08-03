@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour {
     public GameObject camRotatePoint;
 
     [Header("Camera Control Variables")]
+    public float camRotateDelay = 0.5f;
     public float camRotateSpeed = 0f;
     public float camRotateMax = 20f;
     public float camRotateMin = 0f;
@@ -19,7 +20,9 @@ public class CameraController : MonoBehaviour {
     public float camFovMin = 60f;
     public float camFovMax = 100f;
 
+    private float moveCounter;
     private float rotCounter;
+
 
     private void Update()
     {
@@ -28,18 +31,22 @@ public class CameraController : MonoBehaviour {
     }
 
     void CamMove()
-    {
+    {       
         //Create and set the rotation on the camRotatePoint
+
         if (PlayerMovement.isFalling == true)
         {
+            moveCounter += Time.deltaTime;
+        }
 
+        if (PlayerMovement.isFalling == true && moveCounter > camRotateDelay)
+        {
             rotCounter += camDollyUp * Time.deltaTime;
-
         }
         else if (PlayerMovement.isFalling == false)
         {
-
             rotCounter -= camDollyDown * Time.deltaTime;
+            moveCounter = 0f;
         }
         
         //Clamp the value
