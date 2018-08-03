@@ -9,13 +9,17 @@ public class CameraController : MonoBehaviour {
     public GameObject camRotatePoint;
 
     [Header("Camera Control Variables")]
+    public float camRotateSpeed = 0f;
     public float camRotateMax = 20f;
     public float camRotateMin = 0f;
+    public float camDollyUp = 0f;
+    public float camDollyDown = 0f;
     public float camZoomInSpeed = 150f;
     public float camZoomOutSpeed = 10f;
     public float camFovMin = 60f;
     public float camFovMax = 100f;
 
+    private float rotCounter;
 
     private void Update()
     {
@@ -25,17 +29,37 @@ public class CameraController : MonoBehaviour {
 
     void CamMove()
     {
+        //Create and set the rotation on the camRotatePoint
         if (PlayerMovement.isFalling == true)
         {
 
+            rotCounter += camDollyUp * Time.deltaTime;
 
         }
         else if (PlayerMovement.isFalling == false)
         {
 
-
+            rotCounter -= camDollyDown * Time.deltaTime;
         }
+        
+        //Clamp the value
+        rotCounter = Mathf.Clamp(rotCounter, camRotateMin, camRotateMax);
 
+        //Normailize the rotation value so i can give it some easing
+        float smoothStep = Mathf.InverseLerp(camRotateMin, camRotateMax, rotCounter);
+        //Currently using cubic easing with the easing
+        float smoothStart = smoothStep * smoothStep * smoothStep;
+        //Flip the smoothStart
+        float smoothStop = 1 - ( (1 - smoothStep) * (1 - smoothStep) * (1 - smoothStep) );
+        
+        //The amount top blend between both smooth variables (0.5f = 50% blend) 
+        float blend = 0.5f;
+
+        float smoothInOut = (1 - blend) * smoothStart + (blend) * smoothStop;
+
+        camRotatePoint.transform.rotation = Quaternion.Euler(Mathf.Clamp(smoothInOut * camRotateSpeed, camRotateMin, camRotateMax), 0f, 0f);
+
+        //Set the cameras position and rotate to follow the player
         transform.position = camPoint.transform.position;
         transform.rotation = camPoint.transform.rotation;
     }
