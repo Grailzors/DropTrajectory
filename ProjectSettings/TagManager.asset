@@ -18,6 +18,8 @@ TagManager:
   - StartLine
   - SetDec
   - BankPlatform
+  - CamParent
+  - CamRotatePivot
   layers:
   - Default
   - TransparentFX
