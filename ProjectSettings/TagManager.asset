@@ -18,6 +18,7 @@ TagManager:
   - StartLine
   - SetDec
   - BankPlatform
+  - Bank
   layers:
   - Default
   - TransparentFX
