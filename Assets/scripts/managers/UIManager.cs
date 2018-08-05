@@ -5,15 +5,25 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
+    [Header("UI Screens")]
+    public GameObject startUI;
+    public GameObject mainMenuUI;
+    public GameObject inGameUI;
+    public GameObject pauseUI;
+    public GameObject gameOverUI;
+
     [Header("UI Components")]
     public Image screenFade;
+    public Text bankScoreText;
+    public Text playerScoreText;
 
     [Header("VFX Variables")]
+    [Range(0,1)]
     public float startFade;
     public float fallFadeTimer;
 
     public static float fadeOutTime;
-
+    
     private void Start()
     {
         screenFade.color = new Vector4();
@@ -21,7 +31,16 @@ public class UIManager : MonoBehaviour {
 
     private void Update()
     {
-        FadeOutScreen();
+        //FadeOutScreen();
+
+        screenFade.color = screenFade.color * new Vector4(0f, 0f, 0f, startFade);
+
+    }
+
+
+    private void LateUpdate()
+    {
+        ScoreUpdate();
     }
 
     void FadeOutScreen()
@@ -29,7 +48,8 @@ public class UIManager : MonoBehaviour {
         //Control the fade based on if the car is falling
         if (PlayerMovement.isFalling != true)
         {
-            screenFade.color = screenFade.color * new Vector4(0f,0f,0f, Mathf.Clamp((Time.deltaTime * -1), 0f, 1f));
+            print(screenFade);
+            screenFade.color = screenFade.color * new Vector4(0f,0f,0f, Mathf.Clamp(((startFade * Time.deltaTime) * -1), 0f, 1f));
         }
         else
         {
@@ -41,6 +61,16 @@ public class UIManager : MonoBehaviour {
 
             //slowly fade the alpha up to get full black screen
             screenFade.color = new Vector4(0f, 0f, 0f, (fadeOutTime / fallFadeTimer));
+        }
+    }
+
+    void ScoreUpdate()
+    {
+        if (GM.isBanked == true)
+        {
+            playerScoreText.text = "Player Score: " + PlayerManager.playerScore;
+            bankScoreText.text = "Bank Score: " + GM.bankScore;
+            GM.isBanked = false;
         }
     }
 
