@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/Main.unity
     guid: bd7a2c2950f5b4c478a01598cbb220f2
+  - enabled: 1
+    path: Assets/scenes/UITest.unity
+    guid: 5419b26cf4637b846a8976662fce515e
