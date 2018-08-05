@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -544,6 +544,11 @@ Prefab:
       propertyPath: playerScoreText
       value: 
       objectReference: {fileID: 259062250}
+    - target: {fileID: 114094356028219146, guid: 2b0acb3cb687ff14e9eceb05cc408369,
+        type: 2}
+      propertyPath: startFade
+      value: 0.634
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b0acb3cb687ff14e9eceb05cc408369, type: 2}
   m_IsPrefabParent: 0
