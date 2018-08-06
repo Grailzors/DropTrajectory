@@ -18,12 +18,13 @@ public class PlayerManager : MonoBehaviour {
     public ParticleSystem[] tireSmoke;
 
     public static GameObject player;
+    public static int playerScore;
     public static float screenFadeValue;
     public static float resetCounter;
     public static float fallTimer;
 
     private Rigidbody playerRB;
-    private GameObject rayTarget;
+    //private GameObject rayTarget;
 
 
     private void Start()
@@ -54,10 +55,8 @@ public class PlayerManager : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "PickUp")
-        {
-            GM.score += 1;
-        }
+        PlayerScore(other);
+        BankScore(other);
     }
 
     private void OnCollisionEnter(Collision col)
@@ -71,7 +70,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (colObject.tag == "Platform")
         {
-            //Check to see if a repawn point exists and delete it if it does
+            //Check to see if a respawn point exists and delete it if it does
             if (GameObject.FindGameObjectWithTag("Respawn") != null)
             {
                 //print(GameObject.FindGameObjectWithTag("Respawn"));
@@ -91,6 +90,25 @@ public class PlayerManager : MonoBehaviour {
             print("Found Respawn Point");
 
             respawnPoint.transform.position = r;
+        }
+    }
+
+    void BankScore(Collider other)
+    {
+        if (other.tag == "Bank")
+        {
+            GM.bankScore += playerScore;
+            playerScore = 0;
+            GM.isBanked = true;
+        }
+    }
+
+    void PlayerScore(Collider other)
+    {
+        if (other.tag == "PickUp")
+        {
+            playerScore += 1;
+            GM.isBanked = true;
         }
     }
 

@@ -20,6 +20,7 @@ TagManager:
   - BankPlatform
   - CamParent
   - CamRotatePivot
+  - Bank
   layers:
   - Default
   - TransparentFX
