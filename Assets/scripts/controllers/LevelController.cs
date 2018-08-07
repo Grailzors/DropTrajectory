@@ -86,7 +86,7 @@ public class LevelController : MonoBehaviour {
             }
         }
 
-        print("Finished Initial Generation");
+        //print("Finished Initial Generation");
     }
     
 
@@ -152,7 +152,7 @@ public class LevelController : MonoBehaviour {
 
             platformCount += 1;
 
-            print("New Platform");
+            //print("New Platform");
         }
         else
         {
@@ -162,7 +162,7 @@ public class LevelController : MonoBehaviour {
 
             platformCount = 0;
 
-            print("New Bank");
+            //print("New Bank");
         }
     }
 
@@ -176,7 +176,7 @@ public class LevelController : MonoBehaviour {
             GameObject pickUp = Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
             pickUp.transform.parent = pickUpsContainer.transform;
 
-            print("New PickUp");
+            //print("New PickUp");
         }
     }
     
@@ -198,11 +198,11 @@ public class LevelController : MonoBehaviour {
                 GameObject setDec = Instantiate(setDecPrefabs[Random.Range(0, setDecPrefabs.Length)], new Vector3(setDecX, setDecY, setDecZ), Quaternion.identity);
                 setDec.transform.parent = setDecContainer.transform;
 
-                print("New setDec");
+                //print("New setDec");
             }
             else
             {
-                print("No setDec");
+                //print("No setDec");
             }
         }
     }
@@ -221,6 +221,6 @@ public class LevelController : MonoBehaviour {
         killPlane.transform.position = new Vector3(0f, 3000f, 0f);
         killPlane.transform.localScale = new Vector3(999999f, 10f, 999999f);
         
-        print("Made Kill Plane");
+        //print("Made Kill Plane");
     }
 }

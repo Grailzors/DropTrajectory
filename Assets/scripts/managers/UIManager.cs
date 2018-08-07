@@ -14,65 +14,96 @@ public class UIManager : MonoBehaviour {
 
     [Header("UI Components")]
     public Image screenFade;
+    public Text playerLivesText;
     public Text bankScoreText;
     public Text playerScoreText;
+    public GameObject gameOverText;
 
     [Header("VFX Variables")]
-    [Range(0,1)]
+    public Color fadeColor = Color.black;
+    [Range(0, 1)]
     public float startFade;
     public float fallFadeTimer;
+    public float fadeInSpeed = 2f;
+    public float fadeOutSpeed = 5f;
 
     public static float fadeOutTime;
+
+    private float fade;
+    private float fallCounter;
     
     private void Start()
     {
-        screenFade.color = new Vector4();
+        screenFade.color = fadeColor * new Vector4();
+        LivesUpdate();
+        ScoreUpdate();
+        gameOverText.SetActive(false);
     }
 
     private void Update()
     {
-        //FadeOutScreen();
-
-        screenFade.color = screenFade.color * new Vector4(0f, 0f, 0f, startFade);
-
+        FadeOutScreen();
     }
-
 
     private void LateUpdate()
     {
         ScoreUpdate();
+        LivesUpdate();
+        GameOverUpdate();
     }
 
     void FadeOutScreen()
     {
-        //Control the fade based on if the car is falling
-        if (PlayerMovement.isFalling != true)
-        {
-            print(screenFade);
-            screenFade.color = screenFade.color * new Vector4(0f,0f,0f, Mathf.Clamp(((startFade * Time.deltaTime) * -1), 0f, 1f));
-        }
-        else
-        {
-            //Make the fall fade happen halfway through the fall 
-            if (PlayerManager.resetCounter > PlayerManager.fallTimer / startFade)
-            {
-                fadeOutTime += Time.deltaTime;
-            }
+        //print(fallFadeTimer / 2);
+        //print(fallCounter);
 
-            //slowly fade the alpha up to get full black screen
-            screenFade.color = new Vector4(0f, 0f, 0f, (fadeOutTime / fallFadeTimer));
+
+        if (PlayerMovement.isFalling == true && fallCounter >= fallFadeTimer / 1.5f)
+        {
+            fallCounter += Time.deltaTime;
+            fade += fadeInSpeed * Time.deltaTime;
+            //print("Fading IN");
         }
+        else if (PlayerMovement.isFalling == true)
+        {
+            fallCounter += Time.deltaTime;
+        }
+        else if (PlayerMovement.isFalling == false)
+        {
+            fade -= fadeOutSpeed * Time.deltaTime;
+            fallCounter = 0f;
+            //print("Fading OUT");
+        }
+
+        fade = Mathf.Clamp(fade, startFade, 1);
+
+        screenFade.color = fadeColor * new Vector4(0f, 0f, 0f, fade);
+
     }
 
     void ScoreUpdate()
     {
+
+        playerScoreText.text = "Player Score: " + PlayerManager.playerScore;
+
         if (GM.isBanked == true)
         {
-            playerScoreText.text = "Player Score: " + PlayerManager.playerScore;
             bankScoreText.text = "Bank Score: " + GM.bankScore;
             GM.isBanked = false;
         }
     }
 
+    void LivesUpdate()
+    {
+        playerLivesText.text = "Player Lives: " + GM.playerLives;
+    }
+
+    void GameOverUpdate()
+    {
+        if (GM.gameOver == true)
+        {
+            gameOverText.SetActive(true);
+        }
+    }
 }
 

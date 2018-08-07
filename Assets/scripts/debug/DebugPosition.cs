@@ -9,11 +9,16 @@ public class DebugPosition : MonoBehaviour {
     public Color colorError = Color.red;
     public float radius = 1f;
 
+    private GameObject tSphere;
+    private Vector3 test;
+
+    private float time;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = colorCorrect;
-        Gizmos.DrawSphere(transform.position, radius);
+        Gizmos.DrawSphere(test, radius);
     }
+    
 
 }

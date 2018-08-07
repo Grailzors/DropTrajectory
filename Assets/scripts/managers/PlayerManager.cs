@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour {
     public GameObject rayPoint;
 
     [Header("Player Variables")]
-    public int playerLives;
+    public int playerLivesLimit;
     public float fallTimeOut = 0f;
     public float rayLength = 500f;
     public float rayTargetSize = 5f;
@@ -26,11 +26,11 @@ public class PlayerManager : MonoBehaviour {
     private Rigidbody playerRB;
     //private GameObject rayTarget;
 
-
     private void Start()
     {
         player = gameObject;
         playerRB = GetComponent<Rigidbody>();
+        GM.playerLives = playerLivesLimit;
         resetCounter = 0f;
 
         MoveToStartPos();
@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour {
     private void Update()
     {
         //FallTarget();
-        ResetPlayerPosition();
+        RespawnPlayer();
     }
 
     private void LateUpdate()
@@ -117,8 +117,7 @@ public class PlayerManager : MonoBehaviour {
         transform.position = GameObject.FindGameObjectWithTag("StartPosition").transform.position;
     }
 
-
-    void ResetPlayerPosition()
+    void RespawnPlayer()
     {
         //Using this method as I think i will be destroying/instanciting the spawn point
         GameObject resetPoint = GameObject.FindGameObjectWithTag("Respawn");
@@ -126,12 +125,13 @@ public class PlayerManager : MonoBehaviour {
         //Reset Player position to a respawn marker
         if (resetCounter > fallTimeOut)
         {
-            print("Respawn");
+            //print("Respawn");
             transform.position = resetPoint.transform.position;
             PlayerMovement.isIgnition = false;
             PlayerMovement.isFalling = false;
             playerRB.velocity = new Vector3();
-            playerLives -= 1;
+            GM.playerLives -= 1;
+            playerScore = 0;
         }
 
         //Set and reset counter depending if player is falling
@@ -173,56 +173,6 @@ public class PlayerManager : MonoBehaviour {
             {
                 smoke.Play();
             }
-
-            /*
-             * Currently off because it will be tied in with a burnout before the car goes 
-            if (PlayerMovement.isFalling == false)
-            {
-                smoke.Stop();
-            }
-            else
-            {
-                smoke.Play();
-            }
-            */
         }
     }
-
-    /*
-    void FallTarget()
-    {
-        if (PlayerMovement.isFalling == true)
-        {
-            RaycastHit hit;
-
-            if (rayTarget == null)
-            {
-                rayTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                rayTarget.GetComponent<SphereCollider>().enabled = false;
-                rayTarget.transform.localScale = new Vector3(rayTargetSize, rayTargetSize, rayTargetSize);
-                rayTarget.GetComponent<Renderer>().material.color = Color.red;
-            }
-
-            //Cast ray to see where the car will fall
-            if (Physics.Raycast(rayPoint.transform.position, rayPoint.transform.forward, out hit, rayLength))
-            {
-                //draw the sphere on the objects it collides with or draw sphere at the end of the ray
-                Debug.DrawRay(rayPoint.transform.position, rayPoint.transform.forward * hit.distance, Color.green);
-
-                //Move rayTarget
-                rayTarget.transform.position = hit.point;
-            }
-            else
-            {
-                Debug.DrawRay(rayPoint.transform.position, rayPoint.transform.forward * rayLength, Color.white);
-
-                rayTarget.transform.position = rayPoint.transform.position + rayPoint.transform.forward * rayLength;
-            } 
-        }
-        else
-        {
-            DestroyObject(rayTarget);
-        }
-    }
-    */
 }

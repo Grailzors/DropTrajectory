@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour {
     void Ignition()
     {
         //This starts the movement of the car 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && GM.gameOver == false)
         {
             isIgnition = true;
             Debug.Log("ignited!");

@@ -59,5 +59,8 @@ MonoBehaviour:
   screenFade: {fileID: 0}
   bankScoreText: {fileID: 0}
   playerScoreText: {fileID: 0}
+  fadeColor: {r: 0.07200003, g: 0.070848025, b: 0.070848025, a: 1}
   startFade: 0
   fallFadeTimer: 8
+  fadeInSpeed: 0.5
+  fadeOutSpeed: 0.5
