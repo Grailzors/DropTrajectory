@@ -17,7 +17,13 @@ public class UIManager : MonoBehaviour {
     public Text playerLivesText;
     public Text bankScoreText;
     public Text playerScoreText;
+    public Text MultiplierText;
     public GameObject gameOverText;
+    public GameObject MultiplierSlider;
+
+    [Header("Debug UI Components")]
+    public Text fpsUI;
+    public Text fCountUI;
 
     [Header("VFX Variables")]
     public Color fadeColor = Color.black;
@@ -35,8 +41,8 @@ public class UIManager : MonoBehaviour {
     private void Start()
     {
         screenFade.color = fadeColor * new Vector4();
-        LivesUpdate();
-        ScoreUpdate();
+        LivesTextUpdate();
+        ScoreTextUpdate();
         gameOverText.SetActive(false);
     }
 
@@ -47,9 +53,11 @@ public class UIManager : MonoBehaviour {
 
     private void LateUpdate()
     {
-        ScoreUpdate();
-        LivesUpdate();
-        GameOverUpdate();
+        ScoreTextUpdate();
+        LivesTextUpdate();
+        GameOverTextUpdate();
+        MultiplierUIUpdate();
+        FPSTextUpdate();
     }
 
     void FadeOutScreen()
@@ -81,7 +89,7 @@ public class UIManager : MonoBehaviour {
 
     }
 
-    void ScoreUpdate()
+    void ScoreTextUpdate()
     {
 
         playerScoreText.text = "Player Score: " + PlayerManager.playerScore;
@@ -93,17 +101,37 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    void LivesUpdate()
+    void LivesTextUpdate()
     {
         playerLivesText.text = "Player Lives: " + GM.playerLives;
     }
 
-    void GameOverUpdate()
+    void MultiplierUIUpdate()
+    {
+        MultiplierSlider.GetComponent<Slider>().value = PlayerManager.multiplierTimer;
+
+        if (PlayerManager.multiplierScore > 1)
+        {
+            MultiplierText.text = "X " + PlayerManager.multiplierScore;
+        }
+        else
+        {
+            MultiplierText.text = "";
+        }
+    }
+
+    void GameOverTextUpdate()
     {
         if (GM.gameOver == true)
         {
             gameOverText.SetActive(true);
         }
+    }
+
+    void FPSTextUpdate()
+    {
+        fpsUI.text = GM.fps + " fps";
+        fCountUI.text = GM.frameCount + " fcount";
     }
 }
 
