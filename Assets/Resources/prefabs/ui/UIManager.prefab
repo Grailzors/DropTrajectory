@@ -57,8 +57,14 @@ MonoBehaviour:
   pauseUI: {fileID: 0}
   gameOverUI: {fileID: 0}
   screenFade: {fileID: 0}
+  playerLivesText: {fileID: 0}
   bankScoreText: {fileID: 0}
   playerScoreText: {fileID: 0}
+  MultiplierText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  MultiplierSlider: {fileID: 0}
+  fpsUI: {fileID: 0}
+  fCountUI: {fileID: 0}
   fadeColor: {r: 0.07200003, g: 0.070848025, b: 0.070848025, a: 1}
   startFade: 0
   fallFadeTimer: 8
