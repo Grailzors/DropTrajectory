@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: 670bcb9d6ff2a474b9fdc615ef331942
-timeCreated: 1526601729
-licenseType: Pro
+guid: b09a2493840f10a49afc7b8000806747
+timeCreated: 1533699837
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: BackJoint
-    100002: BackLeftJoint
-    100004: BackRightJoint
-    100006: //RootNode
-    100008: PlatformIntersection_geo
-    400000: BackJoint
-    400002: BackLeftJoint
-    400004: BackRightJoint
-    400006: //RootNode
-    400008: PlatformIntersection_geo
-    2300000: PlatformIntersection_geo
-    3300000: PlatformIntersection_geo
-    4300000: PlatformIntersection_geo
+    100000: //RootNode
+    100002: ENV001_LOC_GRP
+    100004: ENV001_MESH_GRP
+    100006: ENV001_Road_1
+    100008: RespawnPoint
+    400000: //RootNode
+    400002: ENV001_LOC_GRP
+    400004: ENV001_MESH_GRP
+    400006: ENV001_Road_1
+    400008: RespawnPoint
+    2300000: ENV001_Road_1
+    3300000: ENV001_Road_1
+    4300000: ENV001_Road_1
     9500000: //RootNode
   externalObjects:
   - first:
@@ -26,7 +26,7 @@ ModelImporter:
       name: lambert1
     second: {fileID: 2100000, guid: e1909e3c19cbbda47a1d117cd9f6b103, type: 2}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -58,7 +58,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 1
+    importBlendShapes: 0
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
