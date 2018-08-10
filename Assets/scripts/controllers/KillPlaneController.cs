@@ -21,6 +21,7 @@ public class KillPlaneController : MonoBehaviour {
     {
         //print(other.name);
         //Destroy gameObject top node so hole asset is destroyed
+        //MAKE SURE THAT THE PREFAB HAS THE KILLTRIGGER ONLY ONE LEVEL DOWN
         DestroyObject(other.gameObject.transform.parent.gameObject);
     }
 
