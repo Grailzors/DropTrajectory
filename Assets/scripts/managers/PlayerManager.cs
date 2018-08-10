@@ -178,9 +178,6 @@ public class PlayerManager : MonoBehaviour {
             multiplierTimer = 0f;
             multiplierScore = 0f;
         }
-
-        print(multiplierScore);
-
     }
 
     void MoveToStartPos()
