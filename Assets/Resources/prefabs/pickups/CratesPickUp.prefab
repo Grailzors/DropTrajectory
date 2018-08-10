@@ -39,8 +39,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4987822101964660}
   - component: {fileID: 65314612085780696}
-  - component: {fileID: 114702531688075314}
   - component: {fileID: 122465788433202932}
+  - component: {fileID: 114596585933569536}
   m_Layer: 8
   m_Name: CratesPickUp
   m_TagString: PickUp
@@ -227,8 +227,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1463447718954948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 37.57}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4070205989082110}
@@ -610,8 +610,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 0.42}
-  m_Center: {x: 0, y: 1, z: 5.34}
+  m_Size: {x: 3, y: 2, z: 5.68}
+  m_Center: {x: 0, y: 1, z: -0.61}
 --- !u!65 &65434475299583002
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -660,7 +660,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114702531688075314
+--- !u!114 &114596585933569536
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -671,6 +671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b137b13deaa54289abe90ea81a4ef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 6.61
+  power: 1200
+  upModifier: 200
+  posOffset: {x: 0, y: -2.14, z: -2.97}
+  destroyObjectTime: 3
 --- !u!122 &122465788433202932
 Halo:
   m_ObjectHideFlags: 1
