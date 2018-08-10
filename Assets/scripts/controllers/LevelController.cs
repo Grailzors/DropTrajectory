@@ -219,7 +219,7 @@ public class LevelController : MonoBehaviour {
         killPlane.GetComponent<Collider>().isTrigger = true;
 
         killPlane.transform.position = new Vector3(0f, 3000f, 0f);
-        killPlane.transform.localScale = new Vector3(999999f, 10f, 999999f);
+        killPlane.transform.localScale = new Vector3(999999f, 100f, 999999f);
         
         //print("Made Kill Plane");
     }
