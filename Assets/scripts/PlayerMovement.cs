@@ -64,7 +64,8 @@ public class PlayerMovement : MonoBehaviour {
         float falling = (fallStrength * Time.deltaTime) * -1;
 
         //Trying some easing on the horizontal movement
-        playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed ), falling, z);
+        //playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed ), falling, z);
+        playerTran.position += new Vector3(h * horizontalSpeed, falling, z);
     }
     
 
