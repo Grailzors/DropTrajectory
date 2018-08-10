@@ -44,7 +44,7 @@ public class LevelController : MonoBehaviour {
     private int platformCount = 0;
 
 
-    private void Start()
+    private void Awake()
     {
         InitialGenerateLevel();
         StartCoroutine(GeneratePlatforms());
