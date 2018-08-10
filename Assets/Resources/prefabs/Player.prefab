@@ -43,22 +43,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1244794794292560
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4397448424006764}
-  - component: {fileID: 135118823262762840}
-  m_Layer: 10
-  m_Name: PickUpPlow
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1258590072043406
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +354,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4433365499428894}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4195943800393494
 Transform:
@@ -398,19 +382,6 @@ Transform:
   m_Father: {fileID: 4880625700095506}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4397448424006764
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1244794794292560}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.21}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4433365499428894}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4422862231879316
 Transform:
   m_ObjectHideFlags: 1
@@ -423,7 +394,7 @@ Transform:
   m_Children:
   - {fileID: 4031844369774152}
   m_Father: {fileID: 4433365499428894}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4426073822979534
 Transform:
@@ -449,7 +420,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 2.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4397448424006764}
   - {fileID: 4136289994474382}
   - {fileID: 4422862231879316}
   - {fileID: 4493906519407908}
@@ -470,7 +440,7 @@ Transform:
   - {fileID: 4517859569388302}
   - {fileID: 4113591918193692}
   m_Father: {fileID: 4433365499428894}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4517859569388302
 Transform:
@@ -852,7 +822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b0ae4a4b6c343de9d880d490495253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayPoint: {fileID: 1639756691954098}
   playerLivesLimit: 3
   fallTimeOut: 8
   rayLength: 500
@@ -862,6 +831,9 @@ MonoBehaviour:
   tireSmoke:
   - {fileID: 198254231677291418}
   - {fileID: 198204115136777070}
+  bounceAmount: 1
+  coolDownTimer: 2
+  coolDownSpeed: 0.2
 --- !u!114 &114923692015639300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -903,18 +875,6 @@ MonoBehaviour:
   wheelSpinSpeed: 200
   wheelTurnAngle: 45
   wheelTurnSpeed: 50
---- !u!135 &135118823262762840
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1244794794292560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 9.66
-  m_Center: {x: 0, y: 0.96, z: -2.96}
 --- !u!198 &198204115136777070
 ParticleSystem:
   m_ObjectHideFlags: 1
