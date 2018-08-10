@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviour {
     {
         GameObject colObject = col.gameObject;
 
-        if (colObject.tag == "Platform")
+        if (colObject.tag == "Platform" || colObject.tag == "StartLine")
         {
             //Check to see if a respawn point exists and delete it if it does
             if (GameObject.FindGameObjectWithTag("Respawn") != null)
@@ -111,6 +111,7 @@ public class PlayerManager : MonoBehaviour {
             GM.isBanked = true;
             multiplierTimer = 0f;
             multiplierScore = 0f;
+            multiplierCollisions = 0;
         }
     }
 
@@ -143,7 +144,7 @@ public class PlayerManager : MonoBehaviour {
     {
         //Limit the amount of collisions detected so that the multiplier doesn't go above 
         //a value of 30
-        multiplierCollisions = Mathf.Clamp(multiplierCollisions, 0, 5);
+        multiplierCollisions = Mathf.Clamp(multiplierCollisions, 0, 6);
 
         if (multiplierTimer > 0f)
         {
@@ -153,17 +154,20 @@ public class PlayerManager : MonoBehaviour {
             //Set multiplier score
             switch (multiplierCollisions)
             {
-                case 5:
+                case 6:
                     multiplierScore = 30f;
                     break;
-                case 4:
+                case 5:
                     multiplierScore = 15f;
                     break;
-                case 3:
+                case 4:
                     multiplierScore = 5f;
                     break;
+                case 3:
+                    multiplierScore = 3f;
+                    break;
                 case 2:
-                    multiplierScore = 2f;
+                    multiplierScore = 2.5f;
                     break;
                 case 1:
                     multiplierScore = 1.5f;
