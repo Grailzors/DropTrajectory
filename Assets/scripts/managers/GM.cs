@@ -18,6 +18,7 @@ public class GM : MonoBehaviour {
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 
@@ -32,7 +33,6 @@ public class GM : MonoBehaviour {
     private void Update()
     {
         frameCount += 1;
-
     }
 
 
@@ -41,9 +41,6 @@ public class GM : MonoBehaviour {
         while(true)
         {
             yield return new WaitForSeconds(1);
-
-            //print(frameCount);
-            //print(fps);
 
             fps = frameCount;
             frameCount = 0;
@@ -68,8 +65,4 @@ public class GM : MonoBehaviour {
             }
         }
     }
-
-
-
-
 }
