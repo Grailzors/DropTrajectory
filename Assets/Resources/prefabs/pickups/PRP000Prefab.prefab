@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4940544036660032}
   m_Layer: 0
   m_Name: PRP000Prefab
-  m_TagString: PickUp
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
