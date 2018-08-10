@@ -32,7 +32,7 @@ TagManager:
   - 
   - PickUpContainer
   - PickUpContents
-  - PickUpPlow
+  - 
   - KillTrigger
   - KillPlane
   - 
