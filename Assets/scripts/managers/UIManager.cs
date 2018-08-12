@@ -65,6 +65,7 @@ public class UIManager : MonoBehaviour {
         //print(fallFadeTimer / 2);
         //print(fallCounter);
 
+        //Bug here where screen is staying faded if player falls to early need to rectify this 
 
         if (PlayerMovement.isFalling == true && fallCounter >= fallFadeTimer / 1.5f)
         {
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour {
         {
             fallCounter += Time.deltaTime;
         }
-        else if (PlayerMovement.isFalling == false)
+        else //if (PlayerMovement.isFalling == false)
         {
             fade -= fadeOutSpeed * Time.deltaTime;
             fallCounter = 0f;
