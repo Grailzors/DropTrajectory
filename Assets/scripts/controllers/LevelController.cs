@@ -100,7 +100,7 @@ public class LevelController : MonoBehaviour {
         {
             yield return new WaitForSeconds(Mathf.Clamp(spawnPlatformTimer - PlayerMovement.fallingCounter, 0.1f, spawnPlatformTimer));
 
-            print(platformsContainer.transform.childCount);
+            //print(platformsContainer.transform.childCount);
 
             if (platformsContainer.transform.childCount < platformLimit)
             {
