@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour {
     public GameObject[] platformPrefabs;
     public GameObject[] bankPrefabs;
     public int initialPlatformNum = 5;
+    public int platformLimit = 35;
     public float spawnPlatformTimer = 10;
     public int spawnBank = 0;
 
@@ -99,7 +100,13 @@ public class LevelController : MonoBehaviour {
         {
             yield return new WaitForSeconds(Mathf.Clamp(spawnPlatformTimer - PlayerMovement.fallingCounter, 0.1f, spawnPlatformTimer));
 
-            PopulateLevel();
+            print(platformsContainer.transform.childCount);
+
+            if (platformsContainer.transform.childCount < platformLimit)
+            {
+                PopulateLevel();
+            }
+            
         }
 
         //print("GameOver level generation stopped");
