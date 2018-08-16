@@ -225,6 +225,7 @@
     <Compile Include="Assets\scripts\controllers\LevelController.cs" />
     <Compile Include="Assets\scripts\controllers\PickupController.cs" />
     <Compile Include="Assets\scripts\controllers\PlatformController.cs" />
+    <Compile Include="Assets\scripts\controllers\SetDecController.cs" />
     <Compile Include="Assets\scripts\debug\DebugPosition.cs" />
     <Compile Include="Assets\scripts\managers\GM.cs" />
     <Compile Include="Assets\scripts\managers\PlayerManager.cs" />
