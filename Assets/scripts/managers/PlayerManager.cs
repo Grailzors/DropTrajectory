@@ -95,7 +95,7 @@ public class PlayerManager : MonoBehaviour {
 
             //Get the reset position on the platform
             Vector3 r = colObject.transform.Find("RespawnPoint").transform.position;
-            print("Found Respawn Point");
+            //print("Found Respawn Point");
 
             respawnPoint.transform.position = r;
         }

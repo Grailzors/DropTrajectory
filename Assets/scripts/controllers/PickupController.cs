@@ -30,7 +30,7 @@ public class PickupController : MonoBehaviour
         //Go through and tell all child objects of the pick up to ignore the plow collider
         if (other.gameObject.tag == "Player")
         {
-            print("Hit Player");
+            //print("Hit Player");
 
             StartCoroutine(DestroyObjectTimer());
 
@@ -53,7 +53,7 @@ public class PickupController : MonoBehaviour
             yield return new WaitForSeconds(destroyObjectTime);
 
             DestroyObject(gameObject);
-            print("Destroyed: " + gameObject);
+            //print("Destroyed: " + gameObject);
         }
     }
 

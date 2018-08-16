@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && GM.gameOver == false)
         {
             isIgnition = true;
-            Debug.Log("ignited!");
+            //Debug.Log("ignited!");
         }
     }
 
