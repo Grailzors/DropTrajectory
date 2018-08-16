@@ -30,6 +30,7 @@ public class LevelController : MonoBehaviour {
     public GameObject[] setDecPrefabs;
     public float setDecPerPlatformMax = 5f;
     public float setDecPerPlatformMin = 2f;
+    public float setDecSpawnRadius = 50f;
     public float setDecPositionMultiplier = 80f;
     public float setDecDistanceMax = 0f;
     public float setDecDistanceMin = 0f;
@@ -150,7 +151,6 @@ public class LevelController : MonoBehaviour {
 
     void InstancePlatform()
     {
-        
         if (platformCount < spawnBank)
         {
             //Create Platforms through the level and calls function to place setdec around it
@@ -186,8 +186,24 @@ public class LevelController : MonoBehaviour {
             //print("New PickUp");
         }
     }
-    
 
+    void InstanceSetDec()
+    {
+        //Create a bunch of setdec items around the platforms based on a random range between a max/min value
+        for (int i = 0; i < Random.Range(setDecPerPlatformMin, setDecPerPlatformMax + 1); i++)
+        {
+
+
+            Vector3 setDecPos = new Vector3(x, y, z) + (Random.insideUnitSphere * setDecSpawnRadius);
+            
+            //Create PickUps through the level
+            GameObject setDec = Instantiate(setDecPrefabs[Random.Range(0, setDecPrefabs.Length)], setDecPos, Quaternion.identity);
+            setDec.transform.parent = setDecContainer.transform;
+        }
+    }
+
+
+    /*
     void InstanceSetDec()
     {
         //Create a bunch of setdec items around the platforms based on a random range between a max/min value
@@ -207,13 +223,9 @@ public class LevelController : MonoBehaviour {
 
                 //print("New setDec");
             }
-            else
-            {
-                //print("No setDec");
-            }
         }
     }
-
+    */
 
     void MakeKillPlane()
     {
