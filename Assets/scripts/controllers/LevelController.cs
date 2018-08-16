@@ -31,9 +31,9 @@ public class LevelController : MonoBehaviour {
     public float setDecPerPlatformMax = 5f;
     public float setDecPerPlatformMin = 2f;
     public float setDecSpawnRadius = 50f;
-    public float setDecPositionMultiplier = 80f;
-    public float setDecDistanceMax = 0f;
-    public float setDecDistanceMin = 0f;
+    //public float setDecPositionMultiplier = 80f;
+    //public float setDecDistanceMax = 0f;
+    //public float setDecDistanceMin = 0f;
 
     private GameObject killPlane;
     private GameObject platformsContainer;
@@ -192,8 +192,6 @@ public class LevelController : MonoBehaviour {
         //Create a bunch of setdec items around the platforms based on a random range between a max/min value
         for (int i = 0; i < Random.Range(setDecPerPlatformMin, setDecPerPlatformMax + 1); i++)
         {
-
-
             Vector3 setDecPos = new Vector3(x, y, z) + (Random.insideUnitSphere * setDecSpawnRadius);
             
             //Create PickUps through the level
@@ -201,31 +199,6 @@ public class LevelController : MonoBehaviour {
             setDec.transform.parent = setDecContainer.transform;
         }
     }
-
-
-    /*
-    void InstanceSetDec()
-    {
-        //Create a bunch of setdec items around the platforms based on a random range between a max/min value
-        for (int i = 0; i < Random.Range(setDecPerPlatformMin, setDecPerPlatformMax + 1); i++)
-        {
-            float setDecX = Random.Range((x + setDecPositionMultiplier) / 2, x + setDecPositionMultiplier);
-            float setDecY = Random.Range((y + setDecPositionMultiplier) / 2, y + setDecPositionMultiplier);
-            float setDecZ = Random.Range((z + setDecPositionMultiplier) / 2, z + setDecPositionMultiplier);
-
-            float d = Vector3.Distance(new Vector3(x, y, z), new Vector3(setDecX, setDecY, setDecZ));
-
-            if (d < setDecDistanceMin || d > setDecDistanceMax)
-            {
-                //Create PickUps through the level
-                GameObject setDec = Instantiate(setDecPrefabs[Random.Range(0, setDecPrefabs.Length)], new Vector3(setDecX, setDecY, setDecZ), Quaternion.identity);
-                setDec.transform.parent = setDecContainer.transform;
-
-                //print("New setDec");
-            }
-        }
-    }
-    */
 
     void MakeKillPlane()
     {
