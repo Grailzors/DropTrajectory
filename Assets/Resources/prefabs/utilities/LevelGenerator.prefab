@@ -68,7 +68,7 @@ MonoBehaviour:
   pickUpPrefabs:
   - {fileID: 1361786357683024, guid: 0f48f8b0979ba83468f8375f1258d92f, type: 2}
   - {fileID: 1619233111674238, guid: 0e87698f53e80a64f806c21685165cc8, type: 2}
-  pickUpSpawnPercentage: 25
+  pickUpSpawnPercentage: 40
   numOfConsecutivePickUps: 2
   pickUpsPerPlatformMax: 1
   pickUpsPerPlatformMin: 0

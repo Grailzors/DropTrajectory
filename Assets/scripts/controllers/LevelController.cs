@@ -145,6 +145,8 @@ public class LevelController : MonoBehaviour {
             InstancePickUp();
         }
 
+        platformCount += 1;
+
         InstanceSetDec();
     }
 
@@ -156,8 +158,6 @@ public class LevelController : MonoBehaviour {
             //Create Platforms through the level and calls function to place setdec around it
             GameObject platform = Instantiate(platformPrefabs[Random.Range(0, platformPrefabs.Length)], new Vector3(x, y, z), Quaternion.identity);
             platform.transform.parent = platformsContainer.transform;
-
-            platformCount += 1;
 
             //print("New Platform");
         }
