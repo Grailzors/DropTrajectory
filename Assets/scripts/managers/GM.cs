@@ -18,7 +18,6 @@ public class GM : MonoBehaviour {
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 
