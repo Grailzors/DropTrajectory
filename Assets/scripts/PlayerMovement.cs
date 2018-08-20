@@ -64,11 +64,12 @@ public class PlayerMovement : MonoBehaviour {
         float falling = (fallStrength * Time.deltaTime) * -1;
 
         //Trying some easing on the horizontal movement
-        //playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed ), falling, z);
-        playerTran.position += new Vector3(h * horizontalSpeed, falling, z);
+        playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed) * Time.deltaTime, falling, z);
+
+        //Old method more direct
+        //playerTran.position += new Vector3((h * horizontalSpeed) * Time.deltaTime, falling, z);
     }
     
-
     /*
      * I like the feel of this one but need to play around with the prefab
      * settings to get the car reacting right to the movement
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour {
 
     }
     */
+
     void PlayerFalling()
     {
         //Get the y position of the player and normalize it to see if it is falling 

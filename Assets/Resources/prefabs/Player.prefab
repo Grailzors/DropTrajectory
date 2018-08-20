@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 80
-  horizontalSpeed: 3.5
+  horizontalSpeed: 180
   horizontalSmoothStep: 0.2
 --- !u!114 &114789132893509182
 MonoBehaviour:
