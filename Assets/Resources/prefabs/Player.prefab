@@ -811,6 +811,14 @@ MonoBehaviour:
   moveSpeed: 80
   horizontalSpeed: 180
   horizontalSmoothStep: 0.2
+  abilitySelect: 3
+  coolDownTime: 2.5
+  airDashDuration: 1.2
+  airDashMultiplier: 2
+  airBreakDuration: 1.2
+  airBreakAmount: 2
+  groundSlamDuration: 0.8
+  groundSlamAmount: 100
 --- !u!114 &114789132893509182
 MonoBehaviour:
   m_ObjectHideFlags: 1

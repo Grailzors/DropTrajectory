@@ -9,27 +9,47 @@ public class PlayerMovement : MonoBehaviour {
     public float horizontalSpeed = 5f;
     public float horizontalSmoothStep = 0f;
 
-    private float fallStrength;
-    private Rigidbody playerRB;
-    private float previousPos;
+    [Header("Selected Ability")]
+    public int abilitySelect = 1;
+
+    [Header("Abilities Variables")]
+    public float coolDownTime = 0f;
+    public float airDashDuration = 0f;
+    public float airDashMultiplier = 0f;
+    public float airBreakDuration = 0f;
+    public float airBreakAmount = 0f;
+    public float groundSlamDuration = 0f;
+    public float groundSlamAmount = 0f;
 
     public static float h;
     public static bool isFalling;
     public static float fallingCounter;
     public static bool isIgnition;
 
+    //private Rigidbody playerRB;
+    private float fallStrength;
+    private float previousPos;
+    private bool isAirDash;
+    private bool isAirBreak;
+    private bool isGroundSlam;
+    private bool abilityEnabled;
+    private bool coolDown;
+
 
     private void Start()
     {
-        playerRB = GetComponent<Rigidbody>();
+        //playerRB = GetComponent<Rigidbody>();
         isFalling = false;
         isIgnition = false;
+        abilityEnabled = false;
+        coolDown = true;
     }
 
     private void Update()
     {
         h = Input.GetAxis("Horizontal");
         Ignition();
+        DebugSwitch();
 
         if (isIgnition == true)
         {
@@ -64,12 +84,65 @@ public class PlayerMovement : MonoBehaviour {
         float falling = (fallStrength * Time.deltaTime) * -1;
 
         //Trying some easing on the horizontal movement
-        playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed) * Time.deltaTime, falling, z);
+        //playerTran.position += new Vector3((((h*h*h) + (h * horizontalSmoothStep)) * horizontalSpeed) * Time.deltaTime, falling, z);
 
         //Old method more direct
-        //playerTran.position += new Vector3((h * horizontalSpeed) * Time.deltaTime, falling, z);
+        playerTran.position += new Vector3((h * horizontalSpeed) * Time.deltaTime, falling, z);
+
+
+        if (Input.GetKeyDown(KeyCode.Q) == true && isFalling == true && abilityEnabled == false)
+        {
+            abilityEnabled = true;
+
+            StartCoroutine(AbilityCooldDown());
+            PlayerAbiltiy();
+        }
+
+
     }
     
+    void PlayerAbiltiy()
+    {
+        switch(abilitySelect)
+        {
+            case 3:
+                StartCoroutine(GroundSlam());
+                print("GroundSlam");
+                break;
+            case 2:
+                StartCoroutine(AirBreak());
+                print("AirBreak");
+                break;
+            case 1:
+                StartCoroutine(AirDash());
+                print("AirDash");
+                break;
+            default:
+                StartCoroutine(AirDash());
+                print("AirDash");
+                break;
+        }
+    }
+
+    //Remove before release
+    void DebugSwitch()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            abilitySelect = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            abilitySelect = 2;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            abilitySelect = 3;
+        }
+    }
+
     /*
      * I like the feel of this one but need to play around with the prefab
      * settings to get the car reacting right to the movement
@@ -109,6 +182,80 @@ public class PlayerMovement : MonoBehaviour {
         //reset the previous position with new previouse position
         previousPos = currentPos;
     }
+
+    IEnumerator AbilityCooldDown()
+    {
+        while (abilityEnabled == true)
+        {
+            //Added another yield in here that also gives the 
+            yield return new WaitForSeconds(coolDownTime);
+
+            abilityEnabled = false;
+        }
+    }
+
+    IEnumerator AirDash()
+    {
+        isAirDash = true;
+        //print("Dashing");
+
+        float origSpeed = moveSpeed;
+
+        moveSpeed = moveSpeed * airDashMultiplier;
+
+        while (isAirDash == true)
+        {
+            yield return new WaitForSeconds(airDashDuration);
+
+            moveSpeed = origSpeed;
+
+            isAirDash = false;
+            //print("Stopped Dashing");
+        }
+    }
+
+    IEnumerator AirBreak()
+    {
+        float origSpeed = moveSpeed;        
+        //print("Dashing");
+
+        if (isAirBreak == false)
+        {
+            moveSpeed = moveSpeed / airBreakAmount;
+            isAirBreak = true;
+        }
+
+        while (isAirBreak == true)
+        {
+            yield return new WaitForSeconds(airBreakDuration);
+
+            moveSpeed = origSpeed;
+
+            isAirBreak = false;
+            //print("Stopped Dashing");
+        }
+    }
+
+    IEnumerator GroundSlam()
+    {
+        isGroundSlam = true;
+        //print("Dashing");
+
+        float origFall = fallStrength;
+
+        fallStrength = groundSlamAmount;
+
+        while (isGroundSlam == true)
+        {
+            yield return new WaitForSeconds(groundSlamDuration);
+
+            fallStrength = origFall;
+
+            isGroundSlam = false;
+            //print("Stopped Dashing");
+        }
+    }
+
 }
 
 
