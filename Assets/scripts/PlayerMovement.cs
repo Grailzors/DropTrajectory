@@ -75,7 +75,6 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    
     //Keep this control method works well atm and can be modified for better feel
     void PlayerMove()
     {
@@ -89,7 +88,7 @@ public class PlayerMovement : MonoBehaviour {
         //Old method more direct
         playerTran.position += new Vector3((h * horizontalSpeed) * Time.deltaTime, falling, z);
 
-
+        //Do player ability
         if (Input.GetKeyDown(KeyCode.Q) == true && isFalling == true && abilityEnabled == false)
         {
             abilityEnabled = true;
