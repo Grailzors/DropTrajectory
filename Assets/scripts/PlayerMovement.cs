@@ -7,10 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Control Variables")]
     public float moveSpeed = 5f;
     public float horizontalSpeed = 5f;
-    public float horizontalSmoothStep = 0f;
-
-    [Header("Selected Ability")]
-    public int abilitySelect = 1;
+    public float horizontalSmoothStep = 0f;  
 
     [Header("Abilities Variables")]
     public float coolDownTime = 0f;
@@ -25,6 +22,8 @@ public class PlayerMovement : MonoBehaviour {
     public static bool isFalling;
     public static float fallingCounter;
     public static bool isIgnition;
+    public static int abilitySelect = 1;
+    public static bool abilityEnabled;
 
     //private Rigidbody playerRB;
     private float fallStrength;
@@ -32,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool isAirDash;
     private bool isAirBreak;
     private bool isGroundSlam;
-    private bool abilityEnabled;
+    //private bool abilityEnabled;
     private bool coolDown;
 
 
