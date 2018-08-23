@@ -17,7 +17,8 @@ public class UIManager : MonoBehaviour {
     public Text playerLivesText;
     public Text bankScoreText;
     public Text playerScoreText;
-    public Text MultiplierText;
+    public Text multiplierText;
+    public Text abilitiesText;
     public GameObject gameOverText;
     public GameObject MultiplierSlider;
 
@@ -58,6 +59,7 @@ public class UIManager : MonoBehaviour {
         GameOverTextUpdate();
         MultiplierUIUpdate();
         FPSTextUpdate();
+        AbilitiesTextUpdate();
     }
 
     void FadeOutScreen()
@@ -113,11 +115,11 @@ public class UIManager : MonoBehaviour {
 
         if (PlayerManager.multiplierScore > 1)
         {
-            MultiplierText.text = "X " + PlayerManager.multiplierScore;
+            multiplierText.text = "X " + PlayerManager.multiplierScore;
         }
         else
         {
-            MultiplierText.text = "";
+            multiplierText.text = "";
         }
     }
 
@@ -133,6 +135,35 @@ public class UIManager : MonoBehaviour {
     {
         fpsUI.text = GM.fps + " fps";
         fCountUI.text = GM.frameCount + " fcount";
+    }
+
+    void AbilitiesTextUpdate()
+    {
+        string coolDown = " Ready";
+        string ability = "";
+
+        if (PlayerMovement.abilityEnabled == true)
+        {
+            coolDown = " Cooling Down";
+        }
+
+        switch(PlayerMovement.abilitySelect)
+        {
+            case 3:
+                ability = "GroundSlam ";
+                break;
+            case 2:
+                ability = "AirBreak ";
+                break;
+            case 1:
+                ability = "AirDash ";
+                break;
+            default:
+                ability = "AirDesh ";
+                break;
+        }
+
+        abilitiesText.text = ability + ":" + coolDown;
     }
 }
 
