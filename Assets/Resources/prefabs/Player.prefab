@@ -811,8 +811,7 @@ MonoBehaviour:
   moveSpeed: 80
   horizontalSpeed: 180
   horizontalSmoothStep: 0.2
-  abilitySelect: 3
-  coolDownTime: 2.5
+  coolDownTime: 4
   airDashDuration: 1.2
   airDashMultiplier: 2
   airBreakDuration: 1.2
