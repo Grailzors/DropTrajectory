@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     public static int abilitySelect = 1;
     public static bool abilityEnabled;
 
-    //private Rigidbody playerRB;
+    private Rigidbody playerRB;
     private float fallStrength;
     private float previousPos;
     private bool isAirDash;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Start()
     {
-        //playerRB = GetComponent<Rigidbody>();
+        playerRB = GetComponent<Rigidbody>();
         isFalling = false;
         isIgnition = false;
         abilityEnabled = false;
@@ -239,15 +239,20 @@ public class PlayerMovement : MonoBehaviour {
         isGroundSlam = true;
         //print("Dashing");
 
-        float origFall = fallStrength;
+        //float origFall = fallStrength;
 
-        fallStrength = groundSlamAmount;
+        //fallStrength = groundSlamAmount;
+
+        playerRB.AddForce(0f, groundSlamAmount * -1, 0f);
 
         while (isGroundSlam == true)
         {
             yield return new WaitForSeconds(groundSlamDuration);
 
-            fallStrength = origFall;
+            //fallStrength = origFall;
+
+            playerRB.AddForce(0f, 0f, 0f);
+
 
             isGroundSlam = false;
             //print("Stopped Dashing");
