@@ -83,7 +83,7 @@ public class PlayerManager : MonoBehaviour {
             {
                 //print(GameObject.FindGameObjectWithTag("Respawn"));
 
-                DestroyObject(GameObject.FindGameObjectWithTag("Respawn"));
+                Object.Destroy(GameObject.FindGameObjectWithTag("Respawn"));
             }
 
             //Create respawn object 
@@ -201,6 +201,7 @@ public class PlayerManager : MonoBehaviour {
             transform.position = resetPoint.transform.position;
             PlayerMovement.isIgnition = false;
             PlayerMovement.isFalling = false;
+            PlayerMovement.abilityEnabled = false;
             playerRB.velocity = new Vector3();
             GM.playerLives -= 1;
             playerScore = 0;
