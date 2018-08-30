@@ -243,17 +243,18 @@ public class PlayerMovement : MonoBehaviour {
 
         //fallStrength = groundSlamAmount;
 
+        //float y = playerRB.velocity.y;
+
         playerRB.AddForce(0f, groundSlamAmount * -1, 0f);
 
         while (isGroundSlam == true)
         {
             yield return new WaitForSeconds(groundSlamDuration);
 
-            //fallStrength = origFall;
 
-            playerRB.AddForce(0f, 0f, 0f);
+            //playerRB.AddForce(0f, y, 0f);
 
-
+            
             isGroundSlam = false;
             //print("Stopped Dashing");
         }
