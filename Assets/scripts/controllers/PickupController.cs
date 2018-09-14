@@ -52,7 +52,7 @@ public class PickupController : MonoBehaviour
         {
             yield return new WaitForSeconds(destroyObjectTime);
 
-            DestroyObject(gameObject);
+            Object.Destroy(gameObject);
             //print("Destroyed: " + gameObject);
         }
     }

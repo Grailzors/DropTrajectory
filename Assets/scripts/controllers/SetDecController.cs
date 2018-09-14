@@ -9,7 +9,7 @@ public class SetDecController : MonoBehaviour {
         if (other.tag == "Platform" || other.tag == "PickUp" || other.tag == "Bank" || other.tag == "StartLine")
         {
             //print("SetDec Inside Object Deleting");
-            DestroyObject(gameObject);
+            Object.Destroy(gameObject);
             //print("Done");
         }
     }
