@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool isAirBreak;
     private bool isGroundSlam;
     //private bool abilityEnabled;
-    private bool coolDown;
+    //private bool coolDown;
 
 
     private void Start()
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
         isFalling = false;
         isIgnition = false;
         abilityEnabled = false;
-        coolDown = true;
+        //coolDown = true;
     }
 
     private void Update()
