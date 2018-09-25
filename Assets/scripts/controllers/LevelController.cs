@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour {
 
+    [Header("Level Controls")]
+    public int changePickupRate = 2;
+
     [Header("Platform Controls")]
     public GameObject startPlatform;
     public GameObject[] platformPrefabs;
@@ -44,6 +47,7 @@ public class LevelController : MonoBehaviour {
     private float z = 0f;
     private int numPickUps = 0;
     private int platformCount = 0;
+    private int bankCount = 0;
 
 
     private void Awake()
@@ -58,6 +62,37 @@ public class LevelController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space) == true && killPlane == null)
         {
             MakeKillPlane();
+        }
+
+        ChangePickupRate();
+    }
+
+
+    //Change the difficulty through the game with this function 
+    void ChangePickupRate()
+    {
+        if (bankCount >= changePickupRate)
+        {
+            int d = Random.Range(0, 4);
+
+            switch(d)
+            {
+                case 3:
+                    pickUpSpawnPercentage = 80;
+                    break;
+                case 2:
+                    pickUpSpawnPercentage = 40;
+                    break;
+                case 1:
+                    pickUpSpawnPercentage = 25;
+                    break;
+                default:
+                    pickUpSpawnPercentage = 100;
+                    break;
+            }
+
+            print("Changed Pickup Rate: " + pickUpSpawnPercentage + "%");
+            bankCount = 0;
         }
     }
 
@@ -168,6 +203,7 @@ public class LevelController : MonoBehaviour {
             bank.transform.parent = platformsContainer.transform;
 
             platformCount = 0;
+            bankCount += 1;
 
             //print("New Bank");
         }
