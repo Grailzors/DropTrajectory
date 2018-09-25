@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour {
     [Header("Player Particle Systems")]
     public ParticleSystem[] fallParticles;
     public ParticleSystem[] tireSmoke;
+    public ParticleSystem[] deathParticle;
 
     [Header("Score Multiplier")]
     public float bounceAmount = 1f;
@@ -31,6 +32,7 @@ public class PlayerManager : MonoBehaviour {
 
     private Rigidbody playerRB;
     private int multiplierCollisions;
+    private bool isCrash;
 
     private void Start()
     {
@@ -46,6 +48,9 @@ public class PlayerManager : MonoBehaviour {
     {
         //FallTarget();
         RespawnPlayer();
+
+        print(isCrash);
+        print(resetCounter);
     }
 
     private void LateUpdate()
@@ -62,6 +67,7 @@ public class PlayerManager : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        WallHit(other);
         PlayerScore(other);
         BankScore(other);
     }
@@ -140,6 +146,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+
     void MultiplyUpdate()
     {
         //Limit the amount of collisions detected so that the multiplier doesn't go above 
@@ -184,9 +191,34 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+
     void MoveToStartPos()
     {
         transform.position = GameObject.FindGameObjectWithTag("StartPosition").transform.position;
+    }
+
+
+    void WallHit(Collider other)
+    {
+        if (other.tag == "DamageWall")
+        {
+            print("Crash");
+            isCrash = true;
+            playerRB.velocity = new Vector3();
+            ResetPlayer();
+        }
+    }
+
+    void ResetPlayer()
+    {
+        PlayerMovement.isIgnition = false;
+        PlayerMovement.isFalling = false;
+        PlayerMovement.abilityEnabled = false;
+        playerRB.velocity = new Vector3();
+        GM.playerLives -= 1;
+        playerScore = 0;
+        multiplierTimer = 0f;
+        multiplierScore = 0f;
     }
 
     void RespawnPlayer()
@@ -199,18 +231,16 @@ public class PlayerManager : MonoBehaviour {
         {
             //print("Respawn");
             transform.position = resetPoint.transform.position;
-            PlayerMovement.isIgnition = false;
-            PlayerMovement.isFalling = false;
-            PlayerMovement.abilityEnabled = false;
-            playerRB.velocity = new Vector3();
-            GM.playerLives -= 1;
-            playerScore = 0;
-            multiplierTimer = 0f;
-            multiplierScore = 0f;
+            ResetPlayer();
+            isCrash = false;
         }
 
         //Set and reset counter depending if player is falling
-        if (PlayerMovement.isFalling != true)
+        if (isCrash == true)
+        {
+            resetCounter += Time.deltaTime;
+        }
+        else if (PlayerMovement.isFalling == false)
         {
             resetCounter = 0f;
         }
@@ -218,8 +248,26 @@ public class PlayerManager : MonoBehaviour {
         {
             resetCounter += Time.deltaTime;
         }
+
     }
-    
+
+
+    void PlayDeathParticles()
+    {
+        foreach (ParticleSystem particles in deathParticle)
+        {
+            if (isCrash == false)
+            {
+                particles.Stop();
+            }
+            else
+            {
+                particles.Play();
+            }
+        }
+    }
+
+
     void PlayFallingParticles()
     {
         foreach (ParticleSystem particles in fallParticles)

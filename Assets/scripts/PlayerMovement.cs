@@ -95,8 +95,6 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine(AbilityCooldDown());
             PlayerAbiltiy();
         }
-
-
     }
     
     void PlayerAbiltiy()
@@ -156,6 +154,9 @@ public class PlayerMovement : MonoBehaviour {
 
     }
     */
+
+
+
 
     void PlayerFalling()
     {
