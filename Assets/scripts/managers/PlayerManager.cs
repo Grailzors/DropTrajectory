@@ -49,8 +49,8 @@ public class PlayerManager : MonoBehaviour {
         //FallTarget();
         RespawnPlayer();
 
-        print(isCrash);
-        print(resetCounter);
+        //print(isCrash);
+        //print(resetCounter);
     }
 
     private void LateUpdate()

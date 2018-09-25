@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
     //private bool abilityEnabled;
     //private bool coolDown;
 
-    private Dictionary<string, int> playerInput = new Dictionary<string, int>();
+    //private Dictionary<string, int> playerInput = new Dictionary<string, int>();
 
 
 
@@ -49,10 +49,12 @@ public class PlayerMovement : MonoBehaviour {
         isIgnition = false;
         abilityEnabled = false;
 
+        /*
         playerInput.Add("a", 0);
         playerInput.Add("d", 1);
         playerInput.Add("w", 2);
         playerInput.Add("s", 3);
+        */
         //coolDown = true;
     }
 
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
         Ignition();
         DebugSwitch();
 
-        PlayerStunt();
+        //PlayerStunt();
 
         if (isIgnition == true)
         {
@@ -111,6 +113,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     
+    
     void PlayerAbiltiy()
     {
         switch(abilitySelect)
@@ -133,7 +136,7 @@ public class PlayerMovement : MonoBehaviour {
                 break;
         }
     }
-
+    
 
     //Remove before release
     void DebugSwitch()
@@ -195,7 +198,7 @@ public class PlayerMovement : MonoBehaviour {
         previousPos = currentPos;
     }
 
-
+    /*
     void PlayerStunt()
     {
         if (Input.anyKeyDown)
@@ -241,7 +244,7 @@ public class PlayerMovement : MonoBehaviour {
        tapCounter = 0 ;
         }
     }
-
+    */
 
     IEnumerator AbilityCooldDown()
     {
