@@ -51,14 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25051791c30e06a4a816c3db7ec85025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changePickupRate: 2
   startPlatform: {fileID: 1754547989520128, guid: b3be849096a32438596198354daff594,
     type: 2}
   platformPrefabs:
   - {fileID: 1801993171023966, guid: b23d482aa82ee4883a9a5c44bd2db2da, type: 2}
   - {fileID: 1758373420334236, guid: 14b109e5390e28d499ad4a83317521f1, type: 2}
+  - {fileID: 1033477636559314, guid: 5f1445313d38a944fb3178276de72771, type: 2}
+  - {fileID: 1744842790491610, guid: b388cc09e4234804a8038e9d3776d8de, type: 2}
+  - {fileID: 1208211028272974, guid: da9ae7421a4d7f7449d786e84f9ee635, type: 2}
+  - {fileID: 1850315181481402, guid: bf5f78d5e1ad4e4448842c50812bc966, type: 2}
+  - {fileID: 1496389607467830, guid: f7e29c7c4ec6db349942779c97266d10, type: 2}
   bankPrefabs:
   - {fileID: 1277663719191294, guid: 433c710efaeb56541b2b170204b0c817, type: 2}
-  initialPlatformNum: 35
+  initialPlatformNum: 36
   platformLimit: 100
   spawnPlatformTimer: 2
   spawnBank: 35
