@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
     public static bool isIgnition;
     public static int abilitySelect = 1;
     public static bool abilityEnabled;
+    public static int isStunting;
 
     private Rigidbody playerRB;
     private float fallStrength;
@@ -31,8 +32,14 @@ public class PlayerMovement : MonoBehaviour {
     private bool isAirDash;
     private bool isAirBreak;
     private bool isGroundSlam;
+    private float tapCooler = 0.5f;
+    private int tapCounter = 0;
     //private bool abilityEnabled;
     //private bool coolDown;
+
+    private Dictionary<string, int> playerInput = new Dictionary<string, int>();
+
+
 
 
     private void Start()
@@ -41,6 +48,11 @@ public class PlayerMovement : MonoBehaviour {
         isFalling = false;
         isIgnition = false;
         abilityEnabled = false;
+
+        playerInput.Add("a", 0);
+        playerInput.Add("d", 1);
+        playerInput.Add("w", 2);
+        playerInput.Add("s", 3);
         //coolDown = true;
     }
 
@@ -49,6 +61,8 @@ public class PlayerMovement : MonoBehaviour {
         h = Input.GetAxis("Horizontal");
         Ignition();
         DebugSwitch();
+
+        PlayerStunt();
 
         if (isIgnition == true)
         {
@@ -120,6 +134,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+
     //Remove before release
     void DebugSwitch()
     {
@@ -156,8 +171,6 @@ public class PlayerMovement : MonoBehaviour {
     */
 
 
-
-
     void PlayerFalling()
     {
         //Get the y position of the player and normalize it to see if it is falling 
@@ -181,6 +194,54 @@ public class PlayerMovement : MonoBehaviour {
         //reset the previous position with new previouse position
         previousPos = currentPos;
     }
+
+
+    void PlayerStunt()
+    {
+        if (Input.anyKeyDown)
+        {
+            string input = Input.inputString;
+
+            if (tapCooler > 0 && tapCounter == 1)
+            {
+                switch (playerInput[input])
+                {
+                    case 3:
+                        //do func 
+                        print("backflip");
+                        break;
+                    case 2:
+                        //do func 
+                        print("frontflip");
+                        break;
+                    case 1:
+                        //do func 
+                        print("rightroll");
+                        break;
+                    case 0:
+                        //do func 
+                        print("leftroll");
+                        break;
+                }
+
+            }
+            else
+            {
+                tapCooler = 0.5f;
+                tapCounter += 1;
+            }
+        }
+ 
+        if (tapCooler > 0 )
+        {
+            tapCooler -= 1 * Time.deltaTime ;
+        }
+        else
+        {
+       tapCounter = 0 ;
+        }
+    }
+
 
     IEnumerator AbilityCooldDown()
     {

@@ -97,6 +97,26 @@ public class CarComponentsController : MonoBehaviour {
 
     }
 
+    void TrickAnimations()
+    {
+        switch(PlayerMovement.isStunting)
+        {
+            case 3:
+                print("ForwardFlip");
+                break;
+            case 2:
+                print("BackFlip");
+                break;
+            case 1:
+                print("LeftRoll");
+                break;
+            case 0:
+                print("RightRoll");
+                break;
+
+        }
+    }
+
     void DoorsController()
     {
 
