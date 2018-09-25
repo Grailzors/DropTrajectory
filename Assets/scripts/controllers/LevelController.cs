@@ -87,7 +87,7 @@ public class LevelController : MonoBehaviour {
                     pickUpSpawnPercentage = 25;
                     break;
                 default:
-                    pickUpSpawnPercentage = 100;
+                    pickUpSpawnPercentage = 40;
                     break;
             }
 
