@@ -38,6 +38,7 @@ public class CarComponentsController : MonoBehaviour {
     public float wheelTurnSpeed = 0f;
 
     [Header("Stunt Controls")]
+    public float flipTime = 4f;
     public float flipSpeed = 100f;
     public float rollSpeed = 100f;
 
@@ -129,9 +130,11 @@ public class CarComponentsController : MonoBehaviour {
                 print("FrontFlip");
                 break;
             case 2:
+                StartCoroutine(Roll(stuntCounter, 2));
                 print("RightRoll");
                 break;
             case 1:
+                StartCoroutine(Roll(stuntCounter, 1));
                 print("LefttRoll");
                 break;
         }
@@ -140,31 +143,52 @@ public class CarComponentsController : MonoBehaviour {
 
     IEnumerator Flip(float counter, int value)
     {
-        print("Running Coroutine");
-
         if (value == 3)
         {
             counter = counter * flipSpeed;
-            Mathf.Clamp(counter, 0f, 360f);
+            Mathf.Clamp(counter, 0f, 359f);
         }
         else if (value == 4)
         {
-            print("YAAAAAAAAAAAAAAAAAAAAAY");
             counter = (counter * flipSpeed) * -1;
-            Mathf.Clamp(counter, -360f, 0f);
+            Mathf.Clamp(counter, -359f, 0f);
         }
 
         StuntPivot.transform.localRotation = Quaternion.Euler(new Vector3(counter, 0f, 0f));
 
         print(counter);
 
-        while (PlayerMovement.stuntID > 0)
+        while (PlayerMovement.isStunting == true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(flipTime);
             counter = 0;
         }  
     }
-    
+
+    IEnumerator Roll(float counter, int value)
+    {
+        if (value == 1)
+        {
+            counter = counter * rollSpeed;
+            Mathf.Clamp(counter, 0f, 359f);
+        }
+        else if (value == 2)
+        {
+            counter = (counter * rollSpeed) * -1;
+            Mathf.Clamp(counter, -359f, 0f);
+        }
+
+        StuntPivot.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, counter));
+
+        print(counter);
+
+        while (PlayerMovement.isStunting == true)
+        {
+            yield return new WaitForSeconds(flipTime);
+            counter = 0;
+        }
+    }
+
 
     void DoorsController()
     {

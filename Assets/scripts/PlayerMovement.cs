@@ -220,7 +220,8 @@ public class PlayerMovement : MonoBehaviour {
             }
             else
             {
-                tapCooler = 0.5f;
+                //Change this value to get the desired cool down before the next input
+                tapCooler = 1f;
                 tapCounter += 1;
             }
         }
