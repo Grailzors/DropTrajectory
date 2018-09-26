@@ -75,7 +75,7 @@ public class PlayerManager : MonoBehaviour {
     private void OnCollisionEnter(Collision col)
     {
         ResetSpawnPos(col);
-        MultiplierIncrease(col);
+        MultiplierCollision(col);
     }
 
     void ResetSpawnPos(Collision col)
@@ -133,9 +133,9 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    void MultiplierIncrease(Collision col)
+    void MultiplierCollision(Collision col)
     {
-        if (PlayerMovement.isStunting == true || col.gameObject.tag == "PickUp")
+        if (col.gameObject.tag == "PickUp")
         {
             if (multiplierTimer > 0)
             {
