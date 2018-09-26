@@ -8,6 +8,7 @@ public class CarComponentsController : MonoBehaviour {
     [Header("Car Componant Parts")]
     public GameObject carObject;
     public GameObject carFrontPivot;
+    public GameObject StuntPivot;
     public CarComponents carPart;
 
     [Header("Car Componant Controls")]
@@ -17,6 +18,7 @@ public class CarComponentsController : MonoBehaviour {
     public float carRotationAngle = 0f;
     public float carRotationSpeed = 0f;
     public float carBankAmount = 0f;
+    public float stuntCounter = 0f;
 
     [Header("Chasis")]
     public float chasisSpeed = 0f;
@@ -35,6 +37,10 @@ public class CarComponentsController : MonoBehaviour {
     public float wheelTurnAngle = 0f;
     public float wheelTurnSpeed = 0f;
 
+    [Header("Stunt Controls")]
+    public float flipSpeed = 100f;
+    public float rollSpeed = 100f;
+
     private float accelerateX = 0f;
     private float fallX;
 
@@ -45,6 +51,7 @@ public class CarComponentsController : MonoBehaviour {
         WheelsController();
         ChasisController();
         CarController();
+        TrickAnimations();
     }
 
     void CarController()
@@ -99,23 +106,65 @@ public class CarComponentsController : MonoBehaviour {
 
     void TrickAnimations()
     {
-        switch(PlayerMovement.isStunting)
+        if (PlayerMovement.stuntID == 0)
         {
-            case 3:
-                print("ForwardFlip");
-                break;
-            case 2:
+            stuntCounter = 0;
+        }
+        else if (PlayerMovement.stuntID > 0)
+        {
+            stuntCounter += 1 * Time.deltaTime;
+        }
+        
+
+        
+
+        switch (PlayerMovement.stuntID)
+        {
+            case 4:
+                StartCoroutine(Flip(stuntCounter, 4));
                 print("BackFlip");
                 break;
-            case 1:
-                print("LeftRoll");
+            case 3:
+                StartCoroutine(Flip(stuntCounter, 3));
+                print("FrontFlip");
                 break;
-            case 0:
+            case 2:
                 print("RightRoll");
                 break;
-
+            case 1:
+                print("LefttRoll");
+                break;
         }
     }
+
+
+    IEnumerator Flip(float counter, int value)
+    {
+        print("Running Coroutine");
+
+        if (value == 3)
+        {
+            counter = counter * flipSpeed;
+            Mathf.Clamp(counter, 0f, 360f);
+        }
+        else if (value == 4)
+        {
+            print("YAAAAAAAAAAAAAAAAAAAAAY");
+            counter = (counter * flipSpeed) * -1;
+            Mathf.Clamp(counter, -360f, 0f);
+        }
+
+        StuntPivot.transform.localRotation = Quaternion.Euler(new Vector3(counter, 0f, 0f));
+
+        print(counter);
+
+        while (PlayerMovement.stuntID > 0)
+        {
+            yield return new WaitForSeconds(1);
+            counter = 0;
+        }  
+    }
+    
 
     void DoorsController()
     {
