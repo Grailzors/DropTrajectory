@@ -233,6 +233,21 @@ Prefab:
       propertyPath: groundSlamDuration
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114923692015639300, guid: 5ebac836d3060354ba02ddcd0390a2d3,
+        type: 2}
+      propertyPath: flipSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114923692015639300, guid: 5ebac836d3060354ba02ddcd0390a2d3,
+        type: 2}
+      propertyPath: rollSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114923692015639300, guid: 5ebac836d3060354ba02ddcd0390a2d3,
+        type: 2}
+      propertyPath: flipTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
   m_IsPrefabParent: 0
