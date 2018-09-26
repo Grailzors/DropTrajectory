@@ -135,7 +135,7 @@ public class PlayerManager : MonoBehaviour {
 
     void MultiplierIncrease(Collision col)
     {
-        if (col.gameObject.tag == "Platform" || col.gameObject.tag == "PickUp")
+        if (PlayerMovement.isStunting == true || col.gameObject.tag == "PickUp")
         {
             if (multiplierTimer > 0)
             {

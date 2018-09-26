@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Control Variables")]
     public float moveSpeed = 5f;
     public float horizontalSpeed = 5f;
-    public float horizontalSmoothStep = 0f;  
+    public float horizontalSmoothStep = 0f;
+    
 
     [Header("Abilities Variables")]
     public float coolDownTime = 0f;
@@ -24,7 +25,8 @@ public class PlayerMovement : MonoBehaviour {
     public static bool isIgnition;
     public static int abilitySelect = 1;
     public static bool abilityEnabled;
-    public static int isStunting;
+    public static int stuntID;
+    public static bool isStunting;
 
     private Rigidbody playerRB;
     private float fallStrength;
@@ -32,14 +34,12 @@ public class PlayerMovement : MonoBehaviour {
     private bool isAirDash;
     private bool isAirBreak;
     private bool isGroundSlam;
-    private float tapCooler = 0.5f;
     private int tapCounter = 0;
+    private float tapCooler = 1f;
     //private bool abilityEnabled;
     //private bool coolDown;
 
-    //private Dictionary<string, int> playerInput = new Dictionary<string, int>();
-
-
+    private Dictionary<string, int> playerInput = new Dictionary<string, int>();
 
 
     private void Start()
@@ -49,12 +49,12 @@ public class PlayerMovement : MonoBehaviour {
         isIgnition = false;
         abilityEnabled = false;
 
-        /*
-        playerInput.Add("a", 0);
-        playerInput.Add("d", 1);
-        playerInput.Add("w", 2);
-        playerInput.Add("s", 3);
-        */
+        
+        playerInput.Add("a", 1);
+        playerInput.Add("d", 2);
+        playerInput.Add("w", 3);
+        playerInput.Add("s", 4);
+        
         //coolDown = true;
     }
 
@@ -64,7 +64,8 @@ public class PlayerMovement : MonoBehaviour {
         Ignition();
         DebugSwitch();
 
-        //PlayerStunt();
+        DoubleTap();
+        //print(isStunting);
 
         if (isIgnition == true)
         {
@@ -198,35 +199,24 @@ public class PlayerMovement : MonoBehaviour {
         previousPos = currentPos;
     }
 
-    /*
-    void PlayerStunt()
+    //This function detects the double tap from a player and triggers an
+    //animation and chains together multipliers
+    //BUG WHERE DOUBLE TAP GETTS INTERUPTED BY ANY BUTTON PRESS
+    void DoubleTap()
     {
-        if (Input.anyKeyDown)
+        if (
+            Input.GetKeyDown(KeyCode.W) && isFalling == true && isStunting == false|| 
+            Input.GetKeyDown(KeyCode.A) && isFalling == true && isStunting == false || 
+            Input.GetKeyDown(KeyCode.S) && isFalling == true && isStunting == false || 
+            Input.GetKeyDown(KeyCode.D) && isFalling == true && isStunting == false
+            )
         {
             string input = Input.inputString;
 
             if (tapCooler > 0 && tapCounter == 1)
             {
-                switch (playerInput[input])
-                {
-                    case 3:
-                        //do func 
-                        print("backflip");
-                        break;
-                    case 2:
-                        //do func 
-                        print("frontflip");
-                        break;
-                    case 1:
-                        //do func 
-                        print("rightroll");
-                        break;
-                    case 0:
-                        //do func 
-                        print("leftroll");
-                        break;
-                }
-
+                isStunting = true;
+                stuntID = playerInput[input];
             }
             else
             {
@@ -235,16 +225,18 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
  
-        if (tapCooler > 0 )
+        if (tapCooler > 0)
         {
             tapCooler -= 1 * Time.deltaTime ;
         }
         else
         {
-       tapCounter = 0 ;
+            isStunting = false;
+            tapCounter = 0 ;
+            stuntID = 0;
         }
     }
-    */
+    
 
     IEnumerator AbilityCooldDown()
     {
