@@ -56,5 +56,4 @@ public class PickupController : MonoBehaviour
             //print("Destroyed: " + gameObject);
         }
     }
-
 }

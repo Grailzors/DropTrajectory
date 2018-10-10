@@ -9,8 +9,9 @@ public class PlayerManager : MonoBehaviour {
     [Header("Player Variables")]
     public int playerLivesLimit;
     public float fallTimeOut = 0f;
-    public float rayLength = 500f;
-    public float rayTargetSize = 5f;
+    public float slowMoTime = 0.1f;
+    //public float rayLength = 500f;
+    //public float rayTargetSize = 5f;
 
     [Header("Player Particle Systems")]
     public ParticleSystem[] fallParticles;
@@ -29,6 +30,7 @@ public class PlayerManager : MonoBehaviour {
     public static float screenFadeValue;
     public static float resetCounter;
     public static float fallTimer;
+    public static bool hitPickup = false;
 
     private Rigidbody playerRB;
     private int multiplierCollisions;
@@ -128,8 +130,10 @@ public class PlayerManager : MonoBehaviour {
         {
             multiplierTimer = coolDownTimer;
             multiplierCollisions += 1;
-            playerScore += 1;
+            playerScore += 1 * GM.pointValue;
             GM.isBanked = true;
+            //hitPickup = true;
+            //StartCoroutine(GM.SlowTime(slowMoTime));
         }
     }
 

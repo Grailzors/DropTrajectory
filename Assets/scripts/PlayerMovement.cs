@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
         Ignition();
         DebugSwitch();
 
-        DoubleTap();
+        //DoubleTap();
         //print(isStunting);
 
         if (isIgnition == true)
@@ -202,6 +202,7 @@ public class PlayerMovement : MonoBehaviour {
     //This function detects the double tap from a player and triggers an
     //animation and chains together multipliers
     //BUG WHERE DOUBLE TAP GETTS INTERUPTED BY ANY BUTTON PRESS
+    /*
     void DoubleTap()
     {
         if (
@@ -237,7 +238,7 @@ public class PlayerMovement : MonoBehaviour {
             stuntID = 0;
         }
     }
-    
+    */
 
     IEnumerator AbilityCooldDown()
     {

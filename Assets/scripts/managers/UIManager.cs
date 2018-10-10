@@ -38,9 +38,12 @@ public class UIManager : MonoBehaviour {
 
     private float fade;
     private float fallCounter;
-    
+
+
     private void Start()
     {
+        Cursor.visible = false;
+
         screenFade.color = fadeColor * new Vector4();
         LivesTextUpdate();
         ScoreTextUpdate();
@@ -50,6 +53,7 @@ public class UIManager : MonoBehaviour {
     private void Update()
     {
         FadeOutScreen();
+        print(pauseUI.activeSelf);
     }
 
     private void LateUpdate()
@@ -60,6 +64,46 @@ public class UIManager : MonoBehaviour {
         MultiplierUIUpdate();
         FPSTextUpdate();
         AbilitiesTextUpdate();
+        TogglePauseMenu();
+
+        //GM.PauseTime(pauseUI.activeSelf, 0.1f);
+    }
+
+    public void QuitGame()
+    {
+        //Maybe Perform save here in the future
+        Application.Quit();
+    }
+
+
+    public void TogglePauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) == true)
+        {
+            if (pauseUI.activeSelf == false)
+            {
+                Cursor.visible = true;
+                inGameUI.SetActive(false);
+                pauseUI.SetActive(true);
+            }
+            else if (pauseUI.activeSelf == true)
+            {
+                //This cursor toggle isnt working for some reason
+                Cursor.visible = false;
+                inGameUI.SetActive(true);
+                pauseUI.SetActive(false);
+            }
+        }
+    }
+
+    public void ClosePauseMenu()
+    {
+        if (pauseUI.activeSelf == true)
+        {
+            Cursor.visible = false;
+            pauseUI.SetActive(false);
+            inGameUI.SetActive(true);
+        }
     }
 
     void FadeOutScreen()

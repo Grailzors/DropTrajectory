@@ -11,6 +11,8 @@ public class GM : MonoBehaviour {
     public static bool gameOver;
     public static bool isBanked;
 
+    public static int pointValue = 10;
+
     //debug var to be removed
     public static int fps;
     public static int frameCount;
@@ -34,6 +36,11 @@ public class GM : MonoBehaviour {
         frameCount += 1;
     }
 
+    private void LateUpdate()
+    {
+        PauseTime(PlayerManager.hitPickup, 0.01f);
+
+    }
 
     IEnumerator FPSCounter()
     {
@@ -45,6 +52,24 @@ public class GM : MonoBehaviour {
             frameCount = 0;
         }
     }
+
+    /*
+    public static IEnumerator SlowTime(float time)
+    {
+        print("SLOWTIME");
+
+        while (PlayerManager.hitPickup == true)
+        {
+            yield return new WaitForSecondsRealtime(time);
+
+            print("STOP SLOWING TIME");
+            PlayerManager.hitPickup = false;
+        }
+
+        //StopCoroutine(SlowTime());
+    }
+    */
+
 
     IEnumerator GameOver()
     {
@@ -62,6 +87,18 @@ public class GM : MonoBehaviour {
                 print("GAMEOVER!!!!!!!!!");
                 print("Start End Game Screen");
             }
+        }
+    }
+
+    public static void PauseTime(bool trigger, float reduceTime)
+    {
+        if (trigger == true)
+        {
+            Time.timeScale = reduceTime;
+        }
+        else if (trigger == false)
+        {
+            Time.timeScale = 1f;
         }
     }
 }

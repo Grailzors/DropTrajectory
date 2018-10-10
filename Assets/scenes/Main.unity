@@ -223,31 +223,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114059122659222068, guid: 5ebac836d3060354ba02ddcd0390a2d3,
-        type: 2}
-      propertyPath: groundSlamAmount
-      value: 20000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114059122659222068, guid: 5ebac836d3060354ba02ddcd0390a2d3,
-        type: 2}
-      propertyPath: groundSlamDuration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114923692015639300, guid: 5ebac836d3060354ba02ddcd0390a2d3,
-        type: 2}
-      propertyPath: flipSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114923692015639300, guid: 5ebac836d3060354ba02ddcd0390a2d3,
-        type: 2}
-      propertyPath: rollSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114923692015639300, guid: 5ebac836d3060354ba02ddcd0390a2d3,
-        type: 2}
-      propertyPath: flipTime
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ebac836d3060354ba02ddcd0390a2d3, type: 2}
   m_IsPrefabParent: 0
@@ -445,6 +420,11 @@ Prefab:
     - target: {fileID: 1955979284427928, guid: 7791c495c09e520448abc197cf6182de, type: 2}
       propertyPath: m_Name
       value: LevelController
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409236401594726, guid: 7791c495c09e520448abc197cf6182de,
+        type: 2}
+      propertyPath: platformZ
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7791c495c09e520448abc197cf6182de, type: 2}

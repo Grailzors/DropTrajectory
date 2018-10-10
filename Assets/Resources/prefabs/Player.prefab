@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53aa999b93d96654ba07698e40f0f92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 80
+  moveSpeed: 95
   horizontalSpeed: 180
   horizontalSmoothStep: 0.2
   coolDownTime: 4
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLivesLimit: 3
-  fallTimeOut: 8
+  fallTimeOut: 5
   rayLength: 500
   rayTargetSize: 20
   fallParticles:
@@ -938,6 +938,7 @@ MonoBehaviour:
   carRotationAngle: 45
   carRotationSpeed: 100
   carBankAmount: 45
+  stuntCounter: 0
   chasisSpeed: 20
   chasisRotationMultiplier: 1
   chasisXRotation: 1
@@ -949,6 +950,9 @@ MonoBehaviour:
   wheelSpinSpeed: 200
   wheelTurnAngle: 45
   wheelTurnSpeed: 50
+  flipTime: 0.5
+  flipSpeed: 1000
+  rollSpeed: 1000
 --- !u!198 &198204115136777070
 ParticleSystem:
   m_ObjectHideFlags: 1
